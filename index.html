@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedro Colbert | Full Stack Engineer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: "#FAFAF8",
+            primary: "#1C1C1C",
+            secondary: "#7A7A7A",
+            accent: "#C5A059",
+            border: "#E0E0DE",
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', "serif"],
+            sans: ["Inter", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      overflow: hidden;
+      height: 100dvh;
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    .delay-100 {
+      animation-delay: 50ms;
+    }
+    .delay-200 {
+      animation-delay: 100ms;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    ::selection {
+      background-color: #c5a059;
+      color: #fafaf8;
+    }
+
+    #main-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    #main-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #main-content::-webkit-scrollbar-thumb {
+      background-color: #e0e0de;
+      border-radius: 10px;
+    }
+    #main-content::-webkit-scrollbar-thumb:hover {
+      background-color: #c5a059;
+    }
+  </style>
+</head>
+
+<body class="bg-bg text-primary font-sans antialiased leading-relaxed flex flex-col">
+  <!-- Header -->
+  <header class="h-20 shrink-0 bg-bg/95 backdrop-blur-sm border-b border-border z-50 relative flex items-center px-4 sm:px-6 lg:px-12">
+    <div class="w-full max-w-screen-2xl mx-auto flex justify-between items-center h-full">
+      <div class="font-serif text-2xl font-semibold tracking-tight text-primary">PC.</div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex space-x-1 h-full items-end" aria-label="Menu Principal">
+        <a href="#home" class="nav-link h-full flex items-center px-4 text-sm font-medium border-b-2 transition-colors focus-visible:ring-2 focus-visible:ring-accent outline-none">Home</a>
+        <a href="#about" class="nav-link h-full flex items-center px-4 text-sm font-medium border-b-2 transition-colors focus-visible:ring-2 focus-visible:ring-accent outline-none">Sobre</a>
+        <a href="#expertise" class="nav-link h-full flex items-center px-4 text-sm font-medium border-b-2 transition-colors focus-visible:ring-2 focus-visible:ring-accent outline-none">Expertise</a>
+        <a href="#experience" class="nav-link h-full flex items-center px-4 text-sm font-medium border-b-2 transition-colors focus-visible:ring-2 focus-visible:ring-accent outline-none">Experiência</a>
+        <a href="#projects" class="nav-link h-full flex items-center px-4 text-sm font-medium border-b-2 transition-colors focus-visible:ring-2 focus-visible:ring-accent outline-none">Projetos</a>
+        <a href="#certifications" class="nav-link h-full flex items-center px-4 text-sm font-medium border-b-2 transition-colors focus-visible:ring-2 focus-visible:ring-accent outline-none">Certificações</a>
+      </nav>
+
+      <!-- Mobile Toggle -->
+      <button id="mobile-menu-btn" class="lg:hidden p-2 text-primary focus-visible:ring-2 focus-visible:ring-accent outline-none" aria-label="Abrir menu" aria-expanded="false">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav id="mobile-nav" class="hidden fixed top-20 left-0 w-full max-h-[calc(100dvh-5rem)] overflow-y-auto bg-bg border-b border-border z-40 lg:hidden flex-col shadow-lg">
+    <a href="#home" class="mobile-nav-link py-4 px-6 border-l-4 border-transparent text-sm font-medium text-secondary hover:bg-gray-50 transition-colors">Home</a>
+    <a href="#about" class="mobile-nav-link py-4 px-6 border-l-4 border-transparent text-sm font-medium text-secondary hover:bg-gray-50 transition-colors">Sobre</a>
+    <a href="#expertise" class="mobile-nav-link py-4 px-6 border-l-4 border-transparent text-sm font-medium text-secondary hover:bg-gray-50 transition-colors">Expertise</a>
+    <a href="#experience" class="mobile-nav-link py-4 px-6 border-l-4 border-transparent text-sm font-medium text-secondary hover:bg-gray-50 transition-colors">Experiência</a>
+    <a href="#projects" class="mobile-nav-link py-4 px-6 border-l-4 border-transparent text-sm font-medium text-secondary hover:bg-gray-50 transition-colors">Projetos</a>
+    <a href="#certifications" class="mobile-nav-link py-4 px-6 border-l-4 border-transparent text-sm font-medium text-secondary hover:bg-gray-50 transition-colors">Certificações</a>
+  </nav>
+
+  <!-- App -->
+  <div class="flex-1 w-full overflow-hidden">
+    <div class="h-full w-full max-w-screen-2xl mx-auto flex overflow-hidden">
+      <!-- Sidebar -->
+      <aside class="hidden md:flex flex-col w-[260px] lg:w-[320px] shrink-0 border-r border-border bg-bg/50 p-6 lg:p-8 overflow-y-auto">
+        <div class="w-16 h-16 shrink-0 bg-primary text-bg rounded flex items-center justify-center font-serif text-2xl mb-6 shadow-sm">
+          PC
+        </div>
+
+        <h2 class="font-serif text-xl lg:text-2xl font-semibold text-primary break-words">Pedro Colbert</h2>
+        <p class="text-secondary text-sm mt-1 leading-relaxed">Full Stack Engineer</p>
+        <p class="text-secondary text-xs mt-0.5">ADS — SENAC (concluído)</p>
+
+        <div class="space-y-4 mb-8 mt-6">
+          <a href="mailto:pedro.s.colbert@gmail.com" class="flex items-center text-sm text-secondary hover:text-accent transition-colors">
+            <i data-lucide="mail" class="w-4 h-4 mr-3 shrink-0"></i> E-mail
+          </a>
+
+          <a href="https://wa.me/5511975700491" target="_blank" rel="noopener noreferrer" class="flex items-center text-sm text-secondary hover:text-accent transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-3 shrink-0"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> WhatsApp
+          </a>
+
+          <a href="https://www.linkedin.com/in/pedro-colbert/" target="_blank" rel="noopener noreferrer"
+             class="flex items-center text-sm text-secondary hover:text-accent transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4 mr-3 shrink-0"></i> LinkedIn
+          </a>
+
+          <!-- Coloque o arquivo Curriculo_pedro_colbert.pdf na mesma pasta do HTML -->
+          <a href="./Curriculo_pedro_colbert.pdf" download="Curriculo_pedro_colbert.pdf"
+             class="flex items-center text-sm text-secondary hover:text-accent transition-colors">
+            <i data-lucide="download" class="w-4 h-4 mr-3 shrink-0"></i> Baixar CV (PDF)
+          </a>
+        </div>
+
+        <div class="mt-auto">
+          <h3 class="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Focus Areas</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-white border border-border text-xs text-secondary rounded-sm whitespace-nowrap">Enterprise Dev</span>
+            <span class="px-2 py-1 bg-white border border-border text-xs text-secondary rounded-sm whitespace-nowrap">AI & Auto</span>
+            <span class="px-2 py-1 bg-white border border-border text-xs text-secondary rounded-sm whitespace-nowrap">Architecture</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main id="main-content" class="flex-1 overflow-y-auto overflow-x-hidden bg-white p-4 sm:p-6 md:p-10 lg:p-14 2xl:p-20 outline-none" tabindex="-1">
+        <!-- WRAPPER: controla largura em telas grandes -->
+        <div class="w-full mx-auto max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
+          <!-- Profile Mobile -->
+          <div class="md:hidden border-b border-border pb-6 mb-6 sm:pb-8 sm:mb-8 fade-in-up">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 shrink-0 bg-primary text-bg rounded flex items-center justify-center font-serif text-lg mr-4 shadow-sm">PC</div>
+              <div>
+                <h2 class="font-serif text-xl font-semibold text-primary">Pedro Colbert</h2>
+                <p class="text-secondary text-xs">Full Stack Engineer</p>
+                <p class="text-secondary text-[11px] mt-1">ADS — SENAC (concluído)</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-4 mt-4">
+              <a href="mailto:pedro.s.colbert@gmail.com" class="flex items-center text-xs text-secondary hover:text-accent">
+                <i data-lucide="mail" class="w-3 h-3 mr-1"></i> E-mail
+              </a>
+              <a href="https://wa.me/5511975700491" target="_blank" rel="noopener noreferrer" class="flex items-center text-xs text-secondary hover:text-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 mr-1"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> WhatsApp
+              </a>
+              <a href="https://www.linkedin.com/in/pedro-colbert/" target="_blank" rel="noopener noreferrer"
+                 class="flex items-center text-xs text-secondary hover:text-accent">
+                <i data-lucide="linkedin" class="w-3 h-3 mr-1"></i> LinkedIn
+              </a>
+              <a href="./Curriculo_pedro_colbert.pdf" download="Curriculo_pedro_colbert.pdf"
+                 class="flex items-center text-xs text-secondary hover:text-accent">
+                <i data-lucide="download" class="w-3 h-3 mr-1"></i> Baixar CV
+              </a>
+            </div>
+          </div>
+
+          <!-- HOME -->
+          <section id="section-home" class="tab-content hidden w-full">
+            <div class="min-h-[50dvh] flex flex-col justify-center">
+              <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-7xl font-medium text-primary leading-tight break-words">
+                Full Stack Engineer
+              </h1>
+              <p class="font-serif text-xl sm:text-2xl md:text-3xl text-accent mt-3 sm:mt-4 break-words">
+                Automation • AI • Security
+              </p>
+
+              <p class="mt-6 sm:mt-8 text-lg sm:text-xl text-secondary font-light leading-relaxed max-w-4xl">
+                Engenheiro Full Stack com experiência no desenvolvimento de sistemas corporativos, atuando em ambientes multi-stack com foco em arquitetura de soluções, automação de processos e integração de sistemas empresariais.
+              </p>
+
+              <div class="mt-8 sm:mt-12 flex flex-wrap gap-4">
+                <a href="#about" class="inline-flex items-center justify-center px-5 py-3 sm:px-6 sm:py-3 bg-primary text-bg font-medium text-sm hover:bg-accent transition-colors duration-300 w-full sm:w-auto text-center">
+                  Conheça o Perfil
+                </a>
+                <a href="#projects" class="inline-flex items-center justify-center px-5 py-3 sm:px-6 sm:py-3 border border-border text-primary font-medium text-sm hover:border-primary transition-colors duration-300 w-full sm:w-auto text-center">
+                  Ver Projetos
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- ABOUT -->
+          <section id="section-about" class="tab-content hidden w-full">
+            <div class="w-full">
+              <h2 class="font-serif text-3xl md:text-4xl text-primary mb-6 sm:mb-8 border-b border-border pb-4">Sobre o Perfil</h2>
+              <div class="space-y-6 text-secondary text-base sm:text-lg font-light leading-relaxed max-w-5xl">
+                <p>
+                  Sou um engenheiro focado em <strong>resolver problemas reais de negócio</strong>, projetando aplicações que escalam com resiliência e eficiência. Atuo na intersecção entre o desenvolvimento robusto e a automação, garantindo integridade e velocidade operacional de sistemas críticos.
+                </p>
+                <p>
+                  Possuo vivência em ambientes corporativos complexos, com experiência em desenvolvimento backend e frontend, modelagem de bancos de dados relacionais e <strong>integração de sistemas empresariais (como ERP MEGA)</strong>.
+                </p>
+                <p>
+                  Um diferencial da minha engenharia é o <strong>uso pragmático de inteligência artificial</strong> para acelerar o ciclo de desenvolvimento — desde engenharia de prompts até ferramentas no fluxo de código para prototipação, debugging e refatoração.
+                </p>
+                
+                <div class="mt-8 p-6 border-l-2 border-accent bg-bg/50">
+                  <h3 class="font-serif text-xl text-primary mb-2 font-medium">Objetivo Profissional</h3>
+                  <p class="text-secondary text-base sm:text-lg">
+                    Evoluir para posições de liderança técnica (Tech Lead), atuando na arquitetura de sistemas, desenvolvimento de soluções escaláveis e aplicação de IA para acelerar e aprimorar a engenharia de software.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- EXPERTISE -->
+          <section id="section-expertise" class="tab-content hidden w-full">
+            <div class="w-full">
+              <h2 class="font-serif text-3xl md:text-4xl text-primary mb-6 sm:mb-8 border-b border-border pb-4">Core Expertise</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16">
+                <div class="p-5 sm:p-6 border border-border bg-bg/50 hover:border-accent transition-colors duration-300 group">
+                  <i data-lucide="layers" class="w-6 h-6 text-accent mb-4 shrink-0"></i>
+                  <h3 class="font-serif text-xl text-primary mb-3">Enterprise Dev</h3>
+                  <ul class="space-y-2 text-secondary text-sm">
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> PHP, Laravel e React</li>
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> Integração com ERP MEGA</li>
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> Modelagem de dados corporativos</li>
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> Arquitetura de soluções</li>
+                  </ul>
+                </div>
+
+                <div class="p-5 sm:p-6 border border-border bg-bg/50 hover:border-accent transition-colors duration-300 group">
+                  <i data-lucide="cpu" class="w-6 h-6 text-accent mb-4 shrink-0"></i>
+                  <h3 class="font-serif text-xl text-primary mb-3">Automation & AI</h3>
+                  <ul class="space-y-2 text-secondary text-sm">
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> Scripts em Python</li>
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> Automação de processos</li>
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> Engenharia de prompts</li>
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> IA aplicada ao código</li>
+                  </ul>
+                </div>
+
+                <div class="p-5 sm:p-6 border border-border bg-bg/50 hover:border-accent transition-colors duration-300 group">
+                  <i data-lucide="shield-check" class="w-6 h-6 text-accent mb-4 shrink-0"></i>
+                  <h3 class="font-serif text-xl text-primary mb-3">Data & Security</h3>
+                  <ul class="space-y-2 text-secondary text-sm">
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> Oracle & SQL Server</li>
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> Consultas SQL</li>
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> Framework OWASP</li>
+                    <li class="flex items-start"><i data-lucide="minus" class="w-3 h-3 mr-2 mt-1 text-border group-hover:text-accent shrink-0"></i> Segurança em APIs</li>
+                  </ul>
+                </div>
+              </div>
+
+              <h3 class="font-serif text-2xl text-primary mb-6">Tech Stack</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div>
+                  <h4 class="text-xs font-semibold tracking-widest text-secondary uppercase mb-3">Web Development</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">PHP</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">Laravel</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">React</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">REST APIs</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="text-xs font-semibold tracking-widest text-secondary uppercase mb-3">Databases</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">Oracle</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">SQL Server</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">SQL</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="text-xs font-semibold tracking-widest text-secondary uppercase mb-3">Automation</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">Python</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">PowerShell</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">Power Automate</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="text-xs font-semibold tracking-widest text-secondary uppercase mb-3">Enterprise Systems</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">ERP MEGA</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">Integrações</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">Processos</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="text-xs font-semibold tracking-widest text-secondary uppercase mb-3">AI Assisted Dev</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">LLMs</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">Prompt Eng</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">AI-coding</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">AI debugging</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="text-xs font-semibold tracking-widest text-secondary uppercase mb-3">Security</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">OWASP</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">Nmap</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">Wireshark</span>
+                    <span class="px-3 py-1 border border-border bg-white text-sm text-primary">Sec Fundamentals</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- EXPERIENCE -->
+          <section id="section-experience" class="tab-content hidden w-full">
+            <div class="w-full">
+              <h2 class="font-serif text-3xl md:text-4xl text-primary mb-8 sm:mb-12 border-b border-border pb-4">Experiência Profissional</h2>
+
+              <div class="space-y-8 sm:space-y-10 relative before:absolute before:inset-0 before:ml-[0.625rem] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-border before:via-border before:to-transparent">
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                  <div class="flex items-center justify-center w-5 h-5 rounded-full bg-accent border-4 border-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm relative z-10"></div>
+                  <div class="w-[calc(100%-2.5rem)] md:w-[calc(50%-1.5rem)] p-5 sm:p-6 border border-border bg-bg/30 rounded-sm">
+                    <div class="flex flex-col xl:flex-row xl:justify-between mb-2 gap-1 xl:gap-0">
+                      <h3 class="text-lg font-medium text-primary">Trisul S.A.</h3>
+                      <span class="text-xs font-medium tracking-wider text-accent uppercase">Nov 2025 — Atual</span>
+                    </div>
+                    <h4 class="text-sm text-secondary mb-4 font-medium">Full Stack Developer</h4>
+                    <ul class="space-y-2 text-secondary text-sm">
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Desenvolvimento de aplicações com PHP (Laravel) e React.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Modelagem de dados e consultas em Oracle e SQL Server.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Integrações e manipulação de dados em ERP MEGA.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Planejamento e arquitetura de módulos de sistemas corporativos.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Automações com Python para ganho de eficiência operacional.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Uso de IA para aceleração de código, debugging e refatoração.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                  <div class="flex items-center justify-center w-5 h-5 rounded-full bg-border border-4 border-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm relative z-10"></div>
+                  <div class="w-[calc(100%-2.5rem)] md:w-[calc(50%-1.5rem)] p-5 sm:p-6 border border-border bg-white rounded-sm">
+                    <div class="flex flex-col xl:flex-row xl:justify-between mb-2 gap-1 xl:gap-0">
+                      <h3 class="text-lg font-medium text-primary">Trisul S.A.</h3>
+                      <span class="text-xs font-medium tracking-wider text-secondary uppercase">2025</span>
+                    </div>
+                    <h4 class="text-sm text-secondary mb-4 font-medium">Assistente de Atendimento ao Usuário</h4>
+                    <ul class="space-y-2 text-secondary text-sm">
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Suporte técnico N1/N2 em ambiente corporativo.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Automação de processos internos.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Gestão e administração de dispositivos via Intune e AD.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                  <div class="flex items-center justify-center w-5 h-5 rounded-full bg-border border-4 border-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm relative z-10"></div>
+                  <div class="w-[calc(100%-2.5rem)] md:w-[calc(50%-1.5rem)] p-5 sm:p-6 border border-border bg-white rounded-sm">
+                    <div class="flex flex-col xl:flex-row xl:justify-between mb-2 gap-1 xl:gap-0">
+                      <h3 class="text-lg font-medium text-primary">Trisul S.A.</h3>
+                      <span class="text-xs font-medium tracking-wider text-secondary uppercase">2024 — 2025</span>
+                    </div>
+                    <h4 class="text-sm text-secondary mb-4 font-medium">Estagiário em TI</h4>
+                    <ul class="space-y-2 text-secondary text-sm">
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Suporte e monitoramento à infraestrutura de redes.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Análise preventiva de logs corporativos.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Automações integradas com Power Automate e Python.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                  <div class="flex items-center justify-center w-5 h-5 rounded-full bg-border border-4 border-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm relative z-10"></div>
+                  <div class="w-[calc(100%-2.5rem)] md:w-[calc(50%-1.5rem)] p-5 sm:p-6 border border-border bg-white rounded-sm">
+                    <div class="flex flex-col xl:flex-row xl:justify-between mb-2 gap-1 xl:gap-0">
+                      <h3 class="text-lg font-medium text-primary">Trisul S.A.</h3>
+                      <span class="text-xs font-medium tracking-wider text-secondary uppercase">2023 — 2024</span>
+                    </div>
+                    <h4 class="text-sm text-secondary mb-4 font-medium">Jovem Aprendiz em TI</h4>
+                    <ul class="space-y-2 text-secondary text-sm">
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Atendimento, triagem e suporte técnico aos usuários.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Manutenção preventiva e correção de hardware.</li>
+                      <li class="flex items-start"><span class="text-accent mr-2 mt-0.5 shrink-0">▪</span> Mapeamento e gestão de inventário de ativos.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- PROJECTS -->
+          <section id="section-projects" class="tab-content hidden w-full">
+            <div class="w-full">
+              <h2 class="font-serif text-3xl md:text-4xl text-primary mb-6 sm:mb-8 border-b border-border pb-4">Projetos & Laboratórios</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div class="group p-5 sm:p-6 border border-border bg-bg/50 hover:border-accent transition-colors duration-300">
+                  <div class="flex justify-between items-start mb-4">
+                    <i data-lucide="workflow" class="w-6 h-6 text-primary shrink-0"></i>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-border group-hover:text-accent transition-colors shrink-0"></i>
+                  </div>
+                  <h3 class="font-serif text-xl text-primary mb-2">Enterprise Automation</h3>
+                  <p class="text-secondary text-sm leading-relaxed">
+                    Automação de processos corporativos críticos integrando rotinas em Python com ferramentas empresariais para ganho de escala.
+                  </p>
+                </div>
+
+                <div class="group p-5 sm:p-6 border border-border bg-bg/50 hover:border-accent transition-colors duration-300">
+                  <div class="flex justify-between items-start mb-4">
+                    <i data-lucide="message-square-code" class="w-6 h-6 text-primary shrink-0"></i>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-border group-hover:text-accent transition-colors shrink-0"></i>
+                  </div>
+                  <h3 class="font-serif text-xl text-primary mb-2">Prompt Engineering Exp.</h3>
+                  <p class="text-secondary text-sm leading-relaxed">
+                    Desenvolvimento de biblioteca de prompts estruturados para automação de tarefas técnicas e aumento de produtividade.
+                  </p>
+                </div>
+
+                <div class="group p-5 sm:p-6 border border-border bg-bg/50 hover:border-accent transition-colors duration-300">
+                  <div class="flex justify-between items-start mb-4">
+                    <i data-lucide="server-crash" class="w-6 h-6 text-primary shrink-0"></i>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-border group-hover:text-accent transition-colors shrink-0"></i>
+                  </div>
+                  <h3 class="font-serif text-xl text-primary mb-2">Security Labs</h3>
+                  <p class="text-secondary text-sm leading-relaxed">
+                    Estudos em ambiente controlado focados em OWASP, análise de tráfego e identificação de vulnerabilidades.
+                  </p>
+                </div>
+
+                <div class="group p-5 sm:p-6 border border-border bg-bg/50 hover:border-accent transition-colors duration-300">
+                  <div class="flex justify-between items-start mb-4">
+                    <i data-lucide="terminal-square" class="w-6 h-6 text-primary shrink-0"></i>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-border group-hover:text-accent transition-colors shrink-0"></i>
+                  </div>
+                  <h3 class="font-serif text-xl text-primary mb-2">System Scripts</h3>
+                  <p class="text-secondary text-sm leading-relaxed">
+                    Arquitetura de scripts em Python para automação de rotinas, padronização de processos e auditoria via logs.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CERTIFICATIONS -->
+          <section id="section-certifications" class="tab-content hidden w-full">
+            <div class="w-full">
+              <h2 class="font-serif text-3xl md:text-4xl text-primary mb-6 sm:mb-8 border-b border-border pb-4">Certificações</h2>
+
+              <ul class="space-y-3 sm:space-y-4 max-w-4xl">
+                <li class="p-4 border border-border bg-bg/30 flex justify-between items-center group hover:border-accent transition-colors">
+                  <div class="pr-4">
+                    <p class="font-medium text-primary text-sm sm:text-base">Introduction to CyberSecurity</p>
+                    <p class="text-xs text-secondary mt-1">Cisco</p>
+                  </div>
+                  <i data-lucide="award" class="w-5 h-5 text-border group-hover:text-accent shrink-0"></i>
+                </li>
+
+                <li class="p-4 border border-border bg-bg/30 flex justify-between items-center group hover:border-accent transition-colors">
+                  <div class="pr-4">
+                    <p class="font-medium text-primary text-sm sm:text-base">Python Essentials</p>
+                    <p class="text-xs text-secondary mt-1">Cisco</p>
+                  </div>
+                  <i data-lucide="award" class="w-5 h-5 text-border group-hover:text-accent shrink-0"></i>
+                </li>
+
+                <li class="p-4 border border-border bg-bg/30 flex justify-between items-center group hover:border-accent transition-colors">
+                  <div class="pr-4">
+                    <p class="font-medium text-primary text-sm sm:text-base">Pentest Profissional</p>
+                    <p class="text-xs text-secondary mt-1">Solyd</p>
+                  </div>
+                  <i data-lucide="award" class="w-5 h-5 text-border group-hover:text-accent shrink-0"></i>
+                </li>
+
+                <li class="p-4 border border-border bg-bg/30 flex justify-between items-center group hover:border-accent transition-colors">
+                  <div class="pr-4">
+                    <p class="font-medium text-primary text-sm sm:text-base">Desenvolvimento HTML / CSS</p>
+                    <p class="text-xs text-secondary mt-1">Alura</p>
+                  </div>
+                  <i data-lucide="award" class="w-5 h-5 text-border group-hover:text-accent shrink-0"></i>
+                </li>
+
+                <li class="p-4 border border-border bg-bg/30 flex justify-between items-center group hover:border-accent transition-colors">
+                  <div class="pr-4">
+                    <p class="font-medium text-primary text-sm sm:text-base">Programação C#</p>
+                    <p class="text-xs text-secondary mt-1">Udemy</p>
+                  </div>
+                  <i data-lucide="award" class="w-5 h-5 text-border group-hover:text-accent shrink-0"></i>
+                </li>
+
+                <li class="p-4 border border-border bg-bg/30 flex justify-between items-center group hover:border-accent transition-colors">
+                  <div class="pr-4">
+                    <p class="font-medium text-primary text-sm sm:text-base">Prompt Engineering Masterclass</p>
+                    <p class="text-xs text-secondary mt-1">ChatGPT, Gemini, Copilot, Claude</p>
+                  </div>
+                  <i data-lucide="award" class="w-5 h-5 text-border group-hover:text-accent shrink-0"></i>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Footer -->
+          <footer class="mt-16 sm:mt-24 pt-6 sm:pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center text-center md:text-left text-xs text-secondary w-full gap-2 md:gap-0">
+            <p>&copy; 2026 Pedro Colbert.</p>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <!-- SPA Router Logic -->
+  <script>
+    const validRoutes = ["home", "about", "expertise", "experience", "projects", "certifications"];
+    const mobileMenu = document.getElementById("mobile-nav");
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mainContent = document.getElementById("main-content");
+
+    mobileMenuBtn.addEventListener("click", () => {
+      const isHidden = mobileMenu.classList.contains("hidden");
+      if (isHidden) {
+        mobileMenu.classList.remove("hidden");
+        mobileMenu.classList.add("flex");
+        mobileMenuBtn.setAttribute("aria-expanded", "true");
+      } else {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    function handleRouteChange() {
+      let hash = window.location.hash.substring(1);
+      if (!validRoutes.includes(hash)) {
+        hash = "home";
+        window.history.replaceState(null, null, "#home");
+      }
+
+      document.querySelectorAll(".tab-content").forEach((el) => {
+        el.classList.add("hidden");
+        el.classList.remove("fade-in-up");
+      });
+
+      const target = document.getElementById(`section-${hash}`);
+      if (target) {
+        target.classList.remove("hidden");
+        void target.offsetWidth;
+        target.classList.add("fade-in-up");
+        mainContent.scrollTop = 0;
+      }
+
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        const href = link.getAttribute("href").substring(1);
+        if (href === hash) {
+          link.classList.add("text-primary", "border-accent");
+          link.classList.remove("text-secondary", "border-transparent");
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.classList.remove("text-primary", "border-accent");
+          link.classList.add("text-secondary", "border-transparent");
+          link.removeAttribute("aria-current");
+        }
+      });
+
+      document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+        const href = link.getAttribute("href").substring(1);
+        if (href === hash) {
+          link.classList.add("text-accent", "border-accent", "bg-gray-50");
+          link.classList.remove("text-secondary", "border-transparent", "bg-transparent");
+        } else {
+          link.classList.remove("text-accent", "border-accent", "bg-gray-50");
+          link.classList.add("text-secondary", "border-transparent", "bg-transparent");
+        }
+      });
+
+      mainContent.focus();
+    }
+
+    window.addEventListener("hashchange", handleRouteChange);
+    window.addEventListener("DOMContentLoaded", handleRouteChange);
+  </script>
+</body>
+</html>
