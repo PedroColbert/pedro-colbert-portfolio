@@ -1,45 +1,315 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f7f7f6">
-<meta name="description" content="Pedro Colbert — desenvolvimento assistido por IA, engenharia de prompts e IA aplicada a negócios. Portfólio de projetos e automações corporativas.">
-<meta property="og:title" content="Pedro Colbert | Desenvolvimento com IA">
-<meta property="og:description" content="Da necessidade de negócio à solução: agentes de IA, arquitetura e validação técnica.">
-<title>Pedro Colbert | Desenvolvimento Assistido por IA</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#f7f7f6;--ink:#181818;--muted:#636363;--line:#dcdcdc;--card:#fff;--accent:#272727}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;color:var(--ink);background:var(--bg);font:15px/1.7 'DM Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #111;outline-offset:4px}::selection{background:#222;color:#fff}.container{width:min(1160px,calc(100% - 48px));margin:auto}.mono,.eyebrow,.meta,.index{font-family:'IBM Plex Mono',monospace}.skip{position:absolute;top:-100px;left:8px;background:#222;color:white;padding:10px;z-index:99}.skip:focus{top:8px}
-header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);background:rgba(247,247,246,.96);backdrop-filter:blur(12px)}.head{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:25px}.logo{font-weight:800;font-size:23px;letter-spacing:-.09em}.logo span{font-weight:400;color:#aaa}nav{display:flex;gap:25px;align-items:center}nav a{font-size:12px;font-weight:700;color:#666}nav a:hover{color:#111}.navcv{border:1px solid #222;color:#222;padding:9px 14px}.navcv:hover{background:#222;color:#fff}details.mobile{display:none}details.mobile summary{cursor:pointer;font-size:12px;font-weight:800;border:1px solid var(--line);padding:10px 15px;list-style:none}details.mobile summary::-webkit-details-marker{display:none}details.mobile nav{position:absolute;right:20px;top:70px;background:white;box-shadow:0 12px 40px #0002;border:1px solid var(--line);display:flex;flex-direction:column;align-items:stretch;padding:14px;gap:0;min-width:200px}details.mobile nav a{padding:10px}
-.hero{padding:105px 0 96px;border-bottom:1px solid var(--line)}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:center}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#686868;font-weight:600}.eyebrow:before{display:inline-block;content:'';width:22px;height:1px;background:#666;vertical-align:middle;margin-right:10px}h1,h2,h3{letter-spacing:-.058em;line-height:1.12}h1{font-size:clamp(53px,6vw,91px);margin:20px 0 28px}h1 em{font-style:normal;color:#919191}.lead{font-size:19px;color:#4f4f4f;max-width:635px}.lead strong{color:#171717}.cta{display:flex;gap:12px;flex-wrap:wrap;margin:34px 0}.btn{font-size:13px;font-weight:800;padding:14px 20px;display:inline-flex;align-items:center;justify-content:space-between;gap:24px;border:1px solid #222;transition:transform .2s,background .2s}.btn:hover{transform:translateY(-2px)}.btn.primary{background:#1a1a1a;color:#fff}.btn.secondary{background:transparent}.social{display:flex;gap:21px;flex-wrap:wrap;font-size:12px;font-weight:700}.social a{text-decoration:underline;text-underline-offset:5px;text-decoration-color:#bbb}.terminal{background:#1c1c1c;color:#eee;box-shadow:18px 18px 0 #e6e6e4}.terminal-header{border-bottom:1px solid #404040;display:flex;justify-content:space-between;padding:18px 24px;color:#aaa;letter-spacing:.1em;font-size:10px}.dots{font-size:16px;letter-spacing:2px}.terminal-body{padding:30px}.terminal-title{font-size:29px;line-height:1.25;font-weight:800;letter-spacing:-.04em;margin:10px 0 20px}.step{padding:14px 0;border-top:1px solid #444;display:grid;grid-template-columns:36px 1fr;gap:8px}.step small{font-family:'IBM Plex Mono',monospace;color:#888}.step span{font-size:13px;color:#ddd}.terminal-footer{font:12px 'IBM Plex Mono',monospace;color:#aaa;margin-top:22px}
-.strip{background:#efefed;border-bottom:1px solid var(--line)}.strip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:23px 0}.strip-grid b{display:block;font-size:16px;letter-spacing:-.03em}.strip-grid small{color:#777}.section{padding:100px 0;border-bottom:1px solid var(--line)}.sec-heading{display:flex;align-items:end;justify-content:space-between;gap:36px;margin-bottom:43px}.sec-heading p{max-width:340px;color:var(--muted);font-size:14px;margin:0}h2{font-size:clamp(38px,4.5vw,62px);margin:15px 0 0}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}.statement{font-size:clamp(28px,3vw,40px);line-height:1.32;font-weight:800;letter-spacing:-.047em}.statement span{color:#969696}.about-copy p{color:#4d4d4d}.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:17px;margin-top:26px}.facts div{border-top:1px solid #bbb;padding-top:10px}.facts b{display:block;font-size:13px}.facts small{color:#777}.services{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.service{padding:27px 22px;background:white;border:1px solid var(--line);min-height:245px}.index{font-size:11px;color:#999}.service h3{font-size:21px;margin:40px 0 14px}.service p{font-size:13px;color:#666;margin:0}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}.tag{font:11px 'IBM Plex Mono',monospace;border:1px solid #ccc;padding:5px 9px;color:#555}
-.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.project{background:white;border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;min-height:306px}.project.feature{background:#202020;border-color:#202020;color:#fff;grid-column:span 2;min-height:315px}.project-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:33px}.status{font:10px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em;border:1px solid #ccc;padding:6px 9px;color:#666}.feature .status{color:#ddd;border-color:#555}.project h3{font-size:clamp(24px,2.5vw,34px);margin:0 0 14px}.project p{font-size:14px;color:#5d5d5d;max-width:730px;margin:0 0 15px}.project.feature p{color:#ddd}.result{border-left:2px solid #222;padding-left:12px;font-weight:700;font-size:12px!important;margin-top:auto!important}.feature .result{border-color:#fff}.project .tags{margin-top:10px}.project .tag{font-size:10px}.feature .tag{border-color:#666;color:#ccc}.note{background:#efefed;padding:26px;margin-top:18px;color:#4f4f4f;font-size:14px}.note b{color:#222}.method{background:#ededeb}.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.method-card{background:#fafafa;border:1px solid #d5d5d5;min-height:185px;padding:24px}.method-card h3{font-size:22px;margin:30px 0 10px}.method-card p{font-size:13px;color:#666;margin:0}.method-summary{border-left:2px solid #222;padding-left:17px;margin-top:27px;color:#535353}.timeline{border-top:1px solid var(--line)}.job{display:grid;grid-template-columns:145px 1fr;gap:30px;padding:25px 0;border-bottom:1px solid var(--line)}.job time{font:12px 'IBM Plex Mono',monospace;color:#777}.job h3{font-size:21px;margin:0 0 4px}.job strong{font-size:12px;color:#666}.job p{font-size:13px;color:#666;margin:9px 0 0}.edu{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.edu article{background:#fff;border:1px solid var(--line);padding:27px}.edu h3{font-size:24px;margin:22px 0 9px}.edu p{font-size:13px;color:#666}.vision{background:#ededeb;padding:28px;margin-top:20px;display:grid;grid-template-columns:1fr 2fr;gap:30px}.vision h3{font-size:24px;margin:0}.vision p{margin:0;color:#555;font-size:14px}
-.contact{background:#1b1b1b;color:#fff;padding:84px 0}.contact-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:70px;align-items:end}.contact h2{font-size:clamp(40px,5vw,67px)}.contact p{color:#aaa}.contact-links{display:flex;flex-direction:column;gap:11px}.contact-links a{border:1px solid #777;padding:15px 18px;display:flex;justify-content:space-between;font-size:13px;font-weight:700}.contact-links a:hover{background:#333}.contact .eyebrow{color:#aaa}footer{background:#111;color:#aaa;font-size:12px;padding:24px 0}.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px}footer a{text-decoration:underline;text-underline-offset:3px}
-@media(max-width:1000px){nav{gap:14px}.hero-grid{gap:35px}.services{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.container{width:min(1160px,calc(100% - 34px))}header nav.desktop{display:none}details.mobile{display:block}.hero{padding:65px 0}.hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:35px}.terminal{box-shadow:10px 10px 0 #e6e6e4}.section{padding:72px 0}.sec-heading{align-items:start;flex-direction:column;gap:15px}.strip-grid,.projects,.method-grid,.edu,.vision{grid-template-columns:1fr}.project.feature{grid-column:auto}.job{grid-template-columns:1fr;gap:6px}.strip-grid>div{padding-bottom:9px;border-bottom:1px solid #ddd}.strip-grid>div:last-child{border:0}.contact{padding:70px 0}}@media(max-width:480px){h1{font-size:48px}.services,.facts{grid-template-columns:1fr}.btn{width:100%}.project-head{align-items:start}.status{text-align:right}.section h2{font-size:39px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pedro Colbert · Desenvolvedor de Software com IA</title>
+  <meta name="description" content="Currículo online de Pedro Colbert, desenvolvedor de software com IA em São Paulo: experiência, projetos, competências e contato." />
+  <meta name="author" content="Pedro Colbert" />
+  <meta name="theme-color" content="#0d0d0e" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Pedro Colbert · Desenvolvedor de Software com IA" />
+  <meta property="og:description" content="Currículo online: experiência, projetos, competências e contato." />
+  <script>
+    // Aplica o tema antes do primeiro desenho, para não piscar
+    try { document.documentElement.dataset.theme = localStorage.getItem('tema') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch { document.documentElement.dataset.theme = 'dark'; }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", "@type": "Person", "name": "Pedro Colbert",
+      "jobTitle": "Desenvolvedor Full Stack",
+      "worksFor": { "@type": "Organization", "name": "Trisul S.A." },
+      "address": { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "SENAC" },
+      "sameAs": ["https://github.com/PedroColbert", "https://www.linkedin.com/in/pedro-colbert/"]
+    }
+  </script>
 </head>
 <body>
-<a class="skip" href="#main">Pular para o conteúdo</a>
-<header><div class="container head"><a class="logo" href="#home" aria-label="Pedro Colbert - Início">PC<span>/</span></a><nav class="desktop" aria-label="Navegação principal"><a href="#home">Início</a><a href="#about">Sobre</a><a href="#expertise">Atuação</a><a href="#projects">Projetos</a><a href="#method">Método</a><a href="#experience">Experiência</a><a href="#education">Formação</a><a class="navcv" href="curriculo.html">Currículo ↗</a></nav><details class="mobile"><summary>MENU ☰</summary><nav aria-label="Navegação móvel"><a href="#home">Início</a><a href="#about">Sobre</a><a href="#expertise">Atuação</a><a href="#projects">Projetos</a><a href="#method">Método</a><a href="#experience">Experiência</a><a href="#education">Formação</a><a href="#contact">Contato</a><a href="curriculo.html">Currículo ↗</a></nav></details></div></header>
-<main id="main">
-<section class="hero" id="home"><div class="container hero-grid"><div><div class="eyebrow">Pedro Colbert · São Paulo, SP</div><h1>Desenvolver com IA.<br><em>Pensar além do código.</em></h1><p class="lead">Transformo problemas de negócio em soluções de software. Meu foco é <strong>estruturar requisitos, orientar agentes de IA e validar implementações</strong> com responsabilidade técnica.</p><div class="cta"><a class="btn primary" href="#projects">Explorar projetos <span>↗</span></a><a class="btn secondary" href="#contact">Entrar em contato <span>↗</span></a></div><div class="social"><a href="https://github.com/PedroColbert" rel="noopener noreferrer" target="_blank">GitHub ↗</a><a href="https://www.linkedin.com/in/pedro-colbert/" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a><a href="curriculo.html">Currículo online ↗</a></div></div><div class="terminal"><div class="terminal-header"><span>AI-ASSISTED DEVELOPMENT</span><span class="dots">•••</span></div><div class="terminal-body"><div class="eyebrow" style="color:#aaa">Como trabalho</div><div class="terminal-title">A IA acelera a execução.<br>A responsabilidade continua humana.</div><div class="step"><small>01</small><span>Compreender o problema e seu contexto</span></div><div class="step"><small>02</small><span>Definir requisitos, arquitetura e riscos</span></div><div class="step"><small>03</small><span>Orquestrar agentes e acompanhar mudanças</span></div><div class="step"><small>04</small><span>Revisar, testar e validar resultados</span></div><div class="terminal-footer">&gt; problemas reais → soluções verificáveis_</div></div></div></div></section>
-<div class="strip"><div class="container strip-grid"><div><b>Desenvolvimento com IA</b><small>Agentes de código, prompts e validação</small></div><div><b>Automação corporativa</b><small>Integrações, processos e sistemas empresariais</small></div><div><b>IA aplicada a negócios</b><small>Adoção, protótipos e governança</small></div></div></div>
-<section class="section" id="about"><div class="container"><div class="sec-heading"><div><div class="eyebrow">01 / Perfil</div><h2>Minha atuação.</h2></div></div><div class="about-grid"><div class="statement">Não se trata apenas de pedir código à IA. Trata-se de <span>saber o que construir, por quê e como verificar.</span></div><div class="about-copy"><p>Sou desenvolvedor de software com experiência em aplicações corporativas, automações e integrações. Concentro minha prática diária em <strong>desenvolvimento assistido por IA, engenharia de prompts e coordenação de agentes de programação</strong>.</p><p>Traduzo demandas de negócio em especificações claras, investigo dependências, defino restrições, organizo instruções para ferramentas como ChatGPT, Codex e Claude Code, acompanho implementações e valido resultados. Minha base em desenvolvimento e infraestrutura ajuda a reconhecer riscos técnicos e operacionais.</p><p>Na Trisul, também <strong>participo do Comitê de IA</strong>, envolvido em iniciativas de adoção da tecnologia. Meu objetivo de longo prazo é ajudar empresas a aplicar IA com método, segurança e retorno para o negócio.</p><div class="facts"><div><b>Experiência</b><small>Tecnologia corporativa desde 2023</small></div><div><b>Foco atual</b><small>Engenharia de software assistida por IA</small></div><div><b>Ambiente de atuação</b><small>ERP, dados, automações e sistemas</small></div><div><b>Visão de futuro</b><small>Consultoria e implementação de IA</small></div></div></div></div></div></section>
-<section class="section" id="expertise"><div class="container"><div class="sec-heading"><div><div class="eyebrow">02 / Competências</div><h2>Onde gero valor.</h2></div><p>A tecnologia é o meio. O objetivo é entregar software e processos que resolvam necessidades concretas.</p></div><div class="services"><article class="service"><div class="index">01 / IA</div><h3>Desenvolvimento assistido por IA</h3><p>Coordenação de agentes, decomposição de tarefas, revisão de código e testes orientados a critérios de aceite.</p></article><article class="service"><div class="index">02 / PROMPTS</div><h3>Engenharia de prompts</h3><p>Contexto técnico, restrições, instruções estruturadas, segurança, documentação e controle de alterações.</p></article><article class="service"><div class="index">03 / SOFTWARE</div><h3>Integrações e arquitetura</h3><p>APIs, aplicações empresariais, dados, sistemas legados, workflows e automações em ambientes reais.</p></article><article class="service"><div class="index">04 / NEGÓCIOS</div><h3>IA aplicada a negócios</h3><p>Identificação de oportunidades, protótipos internos, governança e melhoria de processos operacionais.</p></article></div><div class="tags"><span class="tag">ChatGPT</span><span class="tag">Codex</span><span class="tag">Claude Code</span><span class="tag">Gemini</span><span class="tag">Prompt Engineering</span><span class="tag">Git</span><span class="tag">PHP / Laravel</span><span class="tag">React / TypeScript</span><span class="tag">Python</span><span class="tag">PowerShell</span><span class="tag">Power Automate</span><span class="tag">APIs REST</span><span class="tag">Oracle</span><span class="tag">SQL Server</span><span class="tag">MySQL</span></div></div></section>
-<section class="section" id="projects"><div class="container"><div class="sec-heading"><div><div class="eyebrow">03 / Projetos</div><h2>Casos selecionados.</h2></div><p>Experiências corporativas em alto nível, com o estágio de cada iniciativa apresentado sem exageros.</p></div><p style="color:#777;font-size:13px;margin-top:-15px;margin-bottom:30px"><strong>Nota:</strong> IA utilizada para desenvolver uma solução não significa necessariamente IA embarcada no produto final.</p><div class="projects">
-<article class="project feature"><div class="project-head"><span class="index">01 / AUTOMAÇÃO DE INFRAESTRUTURA</span><span class="status">Em validação</span></div><h3>Provisionamento automatizado do ERP Mega</h3><p>Automação PowerShell em oito etapas para provisionar servidores Windows para o ERP, substituindo procedimentos manuais dispersos. Inclui persistência de estado, logs, retomada após reinicialização e parada segura em falhas.</p><p>Prevê acompanhamento opcional por agente de IA para diagnóstico e correções supervisionadas. Etapas críticas já foram testadas; o teste integral de reconstrução continua pendente.</p><p class="result">Objetivo: reconstrução repetível, menor dependência de conhecimento individual e redução de risco operacional.</p><div class="tags"><span class="tag">PowerShell</span><span class="tag">Claude Code</span><span class="tag">Windows Server</span><span class="tag">ERP</span></div></article>
-<article class="project"><div class="project-head"><span class="index">02 / IA NO PRODUTO</span><span class="status">Protótipo</span></div><h3>Hub corporativo de IA</h3><p>Protótipo de acesso a modelos locais de IA na rede interna, com avaliação da infraestrutura, limitações dos modelos e requisitos futuros de permissões e governança.</p><p class="result">Ambiente de testes acessível em rede; interface de respostas ainda requer ajustes.</p><div class="tags"><span class="tag">LLMs locais</span><span class="tag">IA corporativa</span><span class="tag">Infraestrutura</span></div></article>
-<article class="project"><div class="project-head"><span class="index">03 / IA NO PRODUTO</span><span class="status">Em desenvolvimento</span></div><h3>Consulta ao ERP por linguagem natural</h3><p>Iniciativa desenvolvida com o coordenador para consultar informações do ERP usando perguntas em linguagem natural, conectando IA a dados empresariais.</p><p class="result">Preparação da camada de banco concluída em testes; sem implantação em produção.</p><div class="tags"><span class="tag">IA e dados</span><span class="tag">ERP</span><span class="tag">Protótipo</span></div></article>
-<article class="project"><div class="project-head"><span class="index">04 / IA NO DESENVOLVIMENTO</span><span class="status">Operação</span></div><h3>Recuperação de relatórios do ERP</h3><p>Investigação assistida por IA das falhas de relatórios para usuários remotos, com análise em modo de leitura, diagnóstico de múltiplas causas e correções controladas.</p><p class="result">A abertura dos relatórios foi recuperada; a exportação para Excel seguia em validação.</p><div class="tags"><span class="tag">Troubleshooting</span><span class="tag">ERP</span><span class="tag">Windows</span></div></article>
-<article class="project"><div class="project-head"><span class="index">05 / AUTOMAÇÃO</span><span class="status">Uso local</span></div><h3>Inventário de ativos de TI</h3><p>Controle interno de equipamentos com coleta recorrente de informações dos computadores e exportação de dados, reduzindo dependência de atualização manual.</p><p class="result">Coleta automática duas vezes ao dia; publicação no servidor ainda planejada.</p><div class="tags"><span class="tag">Automação</span><span class="tag">Inventário</span><span class="tag">Dados</span></div></article>
-<article class="project"><div class="project-head"><span class="index">06 / INTEGRAÇÃO</span><span class="status">Execução agendada</span></div><h3>Integração DR Holmes</h3><p>Tratamento automatizado de documentos e dados de processos, com execução programada, retenção e cuidados para evitar operações destrutivas não autorizadas.</p><p class="result">Rotina agendada no servidor; arquivos temporários removidos após cinco dias.</p><div class="tags"><span class="tag">Integrações</span><span class="tag">PDF</span><span class="tag">Automação</span></div></article>
-</div><div class="note"><b>Outras entregas:</b> sistema de solicitações e aprovações do RH em homologação; fluxos em Power Automate; metodologia de prompts com contexto, restrições, testes, validação humana e controles de segurança. Descrições anonimizadas, sem dados ou códigos internos.</div></div></section>
-<section class="section method" id="method"><div class="container"><div class="sec-heading"><div><div class="eyebrow">04 / Método</div><h2>Como desenvolvo com IA.</h2></div><p>O valor não está em aceitar automaticamente o código gerado, mas em controlar a qualidade do processo e da entrega.</p></div><div class="method-grid"><article class="method-card"><span class="index">01 / DISCOVERY</span><h3>Entender</h3><p>Investigar a necessidade, o contexto do negócio e o que caracteriza sucesso.</p></article><article class="method-card"><span class="index">02 / DESIGN</span><h3>Estruturar</h3><p>Definir requisitos, arquitetura, dependências, riscos e limites.</p></article><article class="method-card"><span class="index">03 / PROMPTING</span><h3>Orientar</h3><p>Preparar instruções completas, contexto e critérios de aceite para agentes.</p></article><article class="method-card"><span class="index">04 / EXECUTION</span><h3>Executar</h3><p>Delegar tarefas e acompanhar implementações sem perder controle técnico.</p></article><article class="method-card"><span class="index">05 / QUALITY</span><h3>Verificar</h3><p>Inspecionar mudanças, testar, corrigir falhas e validar resultados.</p></article><article class="method-card"><span class="index">06 / LEARNING</span><h3>Documentar</h3><p>Registrar decisões, lições aprendidas e melhorias para próximos projetos.</p></article></div><p class="method-summary"><strong>Princípio:</strong> a IA amplia a capacidade de execução, mas arquitetura, segurança e responsabilidade pelo resultado permanecem com quem conduz o projeto.</p></div></section>
-<section class="section" id="experience"><div class="container"><div class="sec-heading"><div><div class="eyebrow">05 / Experiência</div><h2>Trajetória.</h2></div><p>Progressão em tecnologia corporativa, desde suporte e infraestrutura até desenvolvimento assistido por IA.</p></div><div class="timeline"><article class="job"><time>2025 — atual</time><div><h3>Desenvolvedor Full Stack</h3><strong>Trisul S.A.</strong><p>Software corporativo, integrações, automações, agentes de programação e participação no Comitê de IA.</p></div></article><article class="job"><time>2025</time><div><h3>Assistente de Atendimento / Service Desk N2</h3><strong>Trisul S.A.</strong><p>Investigação de incidentes, identidades, acessos e automação de rotinas.</p></div></article><article class="job"><time>2024 — 2025</time><div><h3>Estagiário de TI · Infraestrutura e Redes</h3><strong>Trisul S.A.</strong><p>Monitoramento, suporte, análise de logs e scripts em Python e Power Automate.</p></div></article><article class="job"><time>2023 — 2024</time><div><h3>Jovem Aprendiz de TI</h3><strong>Trisul S.A.</strong><p>Suporte técnico, manutenção e inventário de equipamentos.</p></div></article></div></div></section>
-<section class="section" id="education"><div class="container"><div class="sec-heading"><div><div class="eyebrow">06 / Formação</div><h2>Aprendizado contínuo.</h2></div><p>Estudo orientado à implementação prática, além de tecnologias ou ferramentas isoladas.</p></div><div class="edu"><article><span class="eyebrow">Concluído</span><h3>Análise e Desenvolvimento de Sistemas</h3><p>Tecnólogo · SENAC · 2023–2025</p><p>Formação em desenvolvimento, lógica, análise e fundamentos de sistemas.</p></article><article><span class="eyebrow">Próximos passos</span><h3>IA para Negócios</h3><p>Pós-graduação FIAP planejada para 2027 (ainda não iniciada).</p><p>Curso de Engenharia de Prompt (Udemy); Python Essentials (Cisco); prática diária com agentes e projetos.</p></article></div><div class="vision"><h3>Visão de futuro.</h3><p>Aprofundar a união entre engenharia de software, inteligência artificial e estratégia de negócios para, no longo prazo, atuar em consultoria e implementação de IA, ajudando empresas a obter resultados concretos de maneira responsável.</p></div></div></section>
-<section id="contact" class="contact"><div class="container contact-grid"><div><div class="eyebrow">07 / Contato</div><h2>Tem um problema que a IA pode ajudar a resolver?</h2><p>Aberto a oportunidades em desenvolvimento assistido por IA, automação, integrações e iniciativas corporativas de inteligência artificial.</p></div><div class="contact-links"><a href="mailto:pedro.s.colbert@gmail.com">E-mail <span>↗</span></a><a href="https://www.linkedin.com/in/pedro-colbert/" rel="noopener noreferrer" target="_blank">LinkedIn <span>↗</span></a><a href="https://github.com/PedroColbert" rel="noopener noreferrer" target="_blank">GitHub <span>↗</span></a><a href="curriculo.html">Currículo online <span>↗</span></a></div></div></section>
-</main><footer><div class="container foot"><span>© 2026 Pedro Colbert · São Paulo, Brasil</span><span>Portfólio pessoal · Projetos corporativos descritos em alto nível</span><a href="#home">Voltar ao início ↑</a></div></footer>
-<script>document.querySelectorAll('details.mobile nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('details.mobile').open=false}));</script>
-</body></html>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <div data-bits="splash" aria-hidden="true"></div>
+  <div data-bits="targets" aria-hidden="true"></div>
+  <div class="sticker-layer" data-bits="sticker" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="nav__brand" href="#inicio" aria-label="Pedro Colbert, início">P<span>C</span></a>
+    <nav class="nav__links" aria-label="Seções">
+      <a href="#perfil">Perfil</a>
+      <a href="#competencias">Competências</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#metodo">Método</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav__actions">
+      <button type="button" class="sound" aria-pressed="false" aria-label="Ligar a música de fundo" data-cursor="link" hidden>
+        <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sound__label">Som</span>
+      </button>
+      <button type="button" class="theme" aria-pressed="false" data-cursor="link">Tema claro</button>
+      <a class="btn btn--small nav__cv" href="./cv/Pedro_Colbert_Curriculo.pdf" download data-magnetic>CV em PDF</a>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Seções">
+      <a href="#perfil">Perfil</a>
+      <a href="#competencias">Competências</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#metodo">Método</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn--solid" href="./cv/Pedro_Colbert_Curriculo.pdf" download>Baixar currículo em PDF</a>
+  </div>
+
+  <main id="conteudo">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <canvas class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__bits" data-bits="hero" aria-hidden="true"></div>
+      <div class="hero__ball" data-bits="ball" aria-hidden="true"></div>
+      <div class="hero__top mono">
+        <span>Currículo online · 2026</span>
+        <span>São Paulo, BR · <span data-clock>--:--</span></span>
+      </div>
+      <h1 id="hero-title" class="hero__title">Pedro<br />Colbert</h1>
+      <div class="hero__bottom">
+        <p class="hero__role">Desenvolvedor de software com IA<span class="mono">Engenharia de prompts · IA aplicada a negócios</span></p>
+        <p class="hero__lede">Transformo demandas de negócio em requisitos, oriento agentes de programação e valido cada entrega com revisão de código e testes.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--solid" href="#contato" data-magnetic>Falar comigo <span aria-hidden="true">→</span></a>
+          <a class="btn" href="./cv/Pedro_Colbert_Curriculo.pdf" download data-magnetic>Baixar currículo <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <a class="hero__scroll mono" href="#perfil"><span aria-hidden="true"></span>Role para conhecer</a>
+    </section>
+
+    <!-- ============ 01 PERFIL ============ -->
+    <section class="section profile" id="perfil" aria-labelledby="perfil-title">
+      <div class="section__bits" data-bits="perfil" aria-hidden="true"></div>
+      <header class="section__head"><span class="mono">01</span><h2 id="perfil-title" class="mono">Perfil</h2></header>
+      <p class="profile__text" data-words>Profissional de tecnologia com experiência em sistemas corporativos, integrações e automações. Minha atuação é centrada no desenvolvimento assistido por IA: transformo demandas de negócio em requisitos, estruturo contextos e prompts, oriento agentes de programação e acompanho a implementação, a revisão de código e os testes.</p>
+      <dl class="facts">
+        <div data-reveal><dt class="mono">Hoje</dt><dd>Desenvolvedor Full Stack na Trisul S.A.</dd></div>
+        <div data-reveal><dt class="mono">Também</dt><dd>Integrante do comitê interno de IA</dd></div>
+        <div data-reveal><dt class="mono">Base</dt><dd>São Paulo, SP</dd></div>
+        <div data-reveal><dt class="mono">Formação</dt><dd>Análise e Desenvolvimento de Sistemas, SENAC</dd></div>
+      </dl>
+    </section>
+
+    <!-- ============ 02 COMPETÊNCIAS ============ -->
+    <section class="section skills" id="competencias" aria-labelledby="comp-title">
+      <header class="section__head"><span class="mono">02</span><h2 id="comp-title" class="mono">Competências</h2></header>
+      <ul class="skills__list">
+        <li class="skill" data-reveal>
+          <h3>IA aplicada e agentes</h3>
+          <p>Desenvolvimento assistido por IA (vibe coding), prompts estruturados, contextos para agentes e critérios de aceite.</p>
+          <ul class="tags"><li>ChatGPT</li><li>Codex</li><li>Claude Code</li><li>Gemini</li></ul>
+        </li>
+        <li class="skill" data-reveal>
+          <h3>Engenharia e validação</h3>
+          <p>Análise de requisitos, desenho de soluções, revisão de código, testes, troubleshooting e controle de mudanças.</p>
+          <ul class="tags"><li>APIs REST</li><li>Git</li><li>Testes</li><li>Code review</li></ul>
+        </li>
+        <li class="skill" data-reveal>
+          <h3>Base técnica</h3>
+          <p>Aplicações web e automações, escolhendo a ferramenta conforme a necessidade do projeto.</p>
+          <ul class="tags"><li>PHP</li><li>Laravel</li><li>React</li><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>PowerShell</li><li>Power Automate</li></ul>
+        </li>
+        <li class="skill" data-reveal>
+          <h3>Integrações e dados</h3>
+          <p>Integrações com ERP, modelagem relacional e segurança operacional.</p>
+          <ul class="tags"><li>Oracle</li><li>SQL Server</li><li>MySQL</li><li>ERP Mega</li></ul>
+        </li>
+      </ul>
+      <div class="marquee" aria-hidden="true">
+        <div class="logos" data-bits="logos"></div>
+        <div class="marquee__row" data-marquee="1"><span>Laravel</span><span>React</span><span>TypeScript</span><span>Python</span><span>PowerShell</span><span>Oracle</span><span>SQL Server</span><span>Claude Code</span><span>Codex</span></div>
+        <div class="marquee__row marquee__row--outline" data-marquee="-1"><span>Requisitos</span><span>Prompts</span><span>Agentes</span><span>Revisão</span><span>Testes</span><span>Integrações</span><span>Automação</span></div>
+      </div>
+    </section>
+
+    <!-- ============ 03 EXPERIÊNCIA ============ -->
+    <section class="section xp" id="experiencia" aria-labelledby="xp-title">
+      <div class="xp__bits" data-bits="cubes" aria-hidden="true"></div>
+      <header class="section__head"><span class="mono">03</span><h2 id="xp-title" class="mono">Experiência</h2></header>
+      <div class="xp__grid">
+        <div class="xp__year" aria-hidden="true"><span data-year>2025</span><small class="mono">Trisul S.A. · desde 2023</small></div>
+        <ol class="xp__list">
+          <li class="job" data-year-value="2025">
+            <p class="job__when mono">nov/2025 – atual</p>
+            <h3>Desenvolvedor Full Stack</h3>
+            <ul>
+              <li>Traduzo demandas corporativas em requisitos e tarefas estruturadas para agentes de IA, acompanhando implementação, revisão de mudanças e testes.</li>
+              <li>Desenvolvo aplicações e integrações com APIs REST, ERP e bancos relacionais, com Laravel, React e TypeScript.</li>
+              <li>Conduzo automações técnicas de processos e infraestrutura, com registros de execução, tratamento de falhas e validação.</li>
+              <li>Participo do comitê interno de IA, em iniciativas de implantação e adoção da tecnologia.</li>
+            </ul>
+          </li>
+          <li class="job" data-year-value="2025">
+            <p class="job__when mono">2025</p>
+            <h3>Assistente de Atendimento ao Usuário · Service Desk N2</h3>
+            <ul><li>Incidentes, identidades, acessos e automações internas.</li></ul>
+          </li>
+          <li class="job" data-year-value="2024">
+            <p class="job__when mono">2024 – 2025</p>
+            <h3>Estagiário de TI · Infraestrutura e Redes</h3>
+            <ul><li>Monitoramento, suporte e scripts em Python e Power Automate.</li></ul>
+          </li>
+          <li class="job" data-year-value="2023">
+            <p class="job__when mono">2023 – 2024</p>
+            <h3>Jovem Aprendiz em TI</h3>
+            <ul><li>Suporte técnico, manutenção e inventário de equipamentos.</li></ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 04 PROJETOS ============ -->
+    <section class="projects" id="projetos" aria-labelledby="proj-title">
+      <header class="section__head projects__head">
+        <span class="mono">04</span><h2 id="proj-title" class="mono">Projetos selecionados</h2>
+        <span class="projects__count mono" aria-hidden="true"><b data-proj-index>1</b> / 5</span>
+      </header>
+      <div class="projects__track">
+        <article class="project" data-cursor="view">
+          <header><span class="project__n mono">01</span><span class="chip">Em validação</span></header>
+          <h3>Provisionamento automatizado do servidor do ERP</h3>
+          <p>Automação em PowerShell organizada em 8 etapas para instalar e configurar componentes do ERP e integrações essenciais, no lugar de procedimentos predominantemente manuais.</p>
+          <ul class="project__points">
+            <li>Retomada após reinicialização, estado persistido, logs e parada em caso de falha.</li>
+            <li>Apoio opcional de agente de IA na investigação e correção de problemas.</li>
+            <li>Oito etapas implementadas, com componentes críticos validados em ambiente controlado; teste integral em andamento.</li>
+          </ul>
+          <ul class="tags"><li>PowerShell</li><li>ERP Mega</li><li>Automação</li></ul>
+        </article>
+        <article class="project" data-cursor="view">
+          <header><span class="project__n mono">02</span><span class="chip">Protótipo / testes</span></header>
+          <h3>Hub corporativo de IA e consultas ao ERP</h3>
+          <p>Iniciativas internas de IA: um hub com modelos locais e consultas ao banco do ERP por linguagem natural.</p>
+          <ul class="project__points">
+            <li>Avaliação de infraestrutura e definição de necessidades de acesso e governança; funcionalidades ainda em ajustes.</li>
+            <li>Componente de banco preparado em ambiente de testes, sem implantação produtiva.</li>
+          </ul>
+          <ul class="tags"><li>Modelos locais</li><li>Linguagem natural</li><li>Governança</li></ul>
+        </article>
+        <article class="project" data-cursor="view">
+          <header><span class="project__n mono">03</span><span class="chip">Prática aplicada</span></header>
+          <h3>Engenharia de prompts e coordenação de agentes</h3>
+          <p>Instruções técnicas completas para agentes de desenvolvimento, usadas de forma recorrente em software e infraestrutura.</p>
+          <ul class="project__points">
+            <li>Contexto, objetivos, requisitos, restrições de segurança, etapas de execução, testes e critérios de aceite.</li>
+            <li>Revisão de alterações, validação humana e cuidados com produção.</li>
+          </ul>
+          <ul class="tags"><li>ChatGPT</li><li>Codex</li><li>Claude Code</li></ul>
+        </article>
+        <article class="project" data-cursor="view">
+          <header><span class="project__n mono">04</span><span class="chip">Produção</span></header>
+          <h3>Recuperação de relatórios do ERP</h3>
+          <p>Investigação assistida por IA de falhas de relatórios para usuários remotos, com diagnóstico de múltiplas causas e mudanças controladas.</p>
+          <ul class="project__points">
+            <li>A abertura dos relatórios foi recuperada.</li>
+            <li>A exportação para Excel seguia em validação.</li>
+          </ul>
+          <ul class="tags"><li>Diagnóstico</li><li>ERP</li><li>Mudanças controladas</li></ul>
+        </article>
+        <article class="project" data-cursor="view">
+          <header><span class="project__n mono">05</span><span class="chip">Outras entregas</span></header>
+          <h3>Inventário, integrações e fluxos de RH</h3>
+          <p>Entregas menores que fazem parte do dia a dia.</p>
+          <ul class="project__points">
+            <li>Inventário de ativos de TI com coleta automática duas vezes ao dia (uso local, publicação planejada).</li>
+            <li>Integração com execução agendada e regras de retenção.</li>
+            <li>Sistemas de fluxo e aprovação para RH, em desenvolvimento e homologação.</li>
+          </ul>
+          <ul class="tags"><li>Automação</li><li>Integração</li><li>Workflow</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 05 MÉTODO ============ -->
+    <section class="section method" id="metodo" aria-labelledby="met-title">
+      <header class="section__head"><span class="mono">05</span><h2 id="met-title" class="mono">Como trabalho com IA</h2></header>
+      <ol class="steps">
+        <li class="step"><span class="step__n">1</span><div><h3>Requisito</h3><p>Entendo a demanda de negócio e escrevo o que precisa acontecer, para quem e com quais limites.</p></div></li>
+        <li class="step"><span class="step__n">2</span><div><h3>Contexto</h3><p>Estruturo o contexto e o prompt: objetivos, restrições de segurança, etapas e critérios de aceite.</p></div></li>
+        <li class="step"><span class="step__n">3</span><div><h3>Agente</h3><p>Oriento o agente de programação e acompanho a implementação, uma etapa de cada vez.</p></div></li>
+        <li class="step"><span class="step__n">4</span><div><h3>Validação</h3><p>Reviso o código, testo e respondo pelos riscos da mudança. A IA acelera; a responsabilidade é minha.</p></div></li>
+      </ol>
+    </section>
+
+    <!-- ============ 06 FORMAÇÃO ============ -->
+    <section class="section edu" id="formacao" aria-labelledby="edu-title">
+      <header class="section__head"><span class="mono">06</span><h2 id="edu-title" class="mono">Formação e cursos</h2></header>
+      <ul class="edu__list">
+        <li data-reveal><span class="mono">2023 – 2025</span><h3>Tecnólogo em Análise e Desenvolvimento de Sistemas</h3><p>SENAC · concluído</p></li>
+        <li data-reveal><span class="mono">Curso</span><h3>Engenharia de Prompt: ChatGPT, Gemini e Meta AI</h3><p>Udemy</p></li>
+        <li data-reveal><span class="mono">Curso</span><h3>Python Essentials</h3><p>Cisco</p></li>
+      </ul>
+    </section>
+
+    <!-- ============ BASTIDORES: a revelação do final ============ -->
+    <section class="reveal" id="bastidores" aria-labelledby="rev-title">
+      <div class="reveal__flood" aria-hidden="true"></div>
+      <div class="reveal__inner">
+        <p class="mono reveal__kicker">Antes de ir, uma última coisa</p>
+        <h2 id="rev-title" class="reveal__title" aria-label="Este site foi feito com IA."><span aria-hidden="true" data-scramble>Este site foi</span><span aria-hidden="true" data-scramble>feito com IA.</span></h2>
+        <p class="reveal__lede" data-reveal>Nenhuma linha de código foi digitada à mão. Eu defini os requisitos, orientei o agente e revisei cada entrega: o mesmo método que uso no trabalho.</p>
+        <div class="reveal__grid">
+          <ol class="reveal__steps">
+            <li data-reveal><span class="mono">1 · Requisito</span><p>Um currículo online bem moderno, com várias interações e animações na rolagem, usando só fatos do meu currículo.</p></li>
+            <li data-reveal><span class="mono">2 · Contexto</span><p>O currículo em PDF como fonte, regras de conteúdo e armadilhas técnicas registradas num arquivo de contexto do projeto.</p></li>
+            <li data-reveal><span class="mono">3 · Agente</span><p>O Claude Code escreveu o HTML, o CSS e o TypeScript, uma etapa de cada vez, e integrou efeitos de código aberto do React Bits.</p></li>
+            <li data-reveal><span class="mono">4 · Validação</span><p>Cada versão foi testada em computador e celular. Recusei três direções inteiras antes desta.</p></li>
+          </ol>
+          <div class="term">
+            <div class="term__bar" aria-hidden="true"><i></i><i></i><i></i><span>claude code · curriculo</span></div>
+            <div class="term__screen" data-bits="term" aria-hidden="true"></div>
+            <div class="term__body">
+              <p><span><b>$</b> claude</span></p>
+              <p class="term__in"><span>› Monte um site para ser o meu currículo online: bem moderno, com várias interações e interação na rolagem.</span></p>
+              <p><span>● index.html</span><span class="dim">%L_HTML% linhas</span></p>
+              <p><span>● src/style.css</span><span class="dim">%L_CSS% linhas</span></p>
+              <p><span>● src/main.ts</span><span class="dim">%L_MAIN% linhas</span></p>
+              <p><span>● src/hero-canvas.ts</span><span class="dim">%L_CANVAS% linhas</span></p>
+              <p><span>● src/islands.tsx</span><span class="dim">%L_ISLANDS% linhas</span></p>
+              <p><span>● 11 efeitos do React Bits</span><span class="dim">código aberto</span></p>
+              <p class="ok"><span>✓ %L_TOTAL% linhas escritas pelo agente, 0 à mão</span></p>
+              <p class="ok"><span>✓ testado em computador e celular</span></p>
+              <p class="ok"><span>✓ revisado por Pedro Colbert<i class="term__caret" aria-hidden="true"></i></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTATO ============ -->
+    <section class="contact" id="contato" aria-labelledby="contato-title">
+      <div class="contact__bits" data-bits="contact" aria-hidden="true"></div>
+      <p class="mono contact__kicker">Agora que você já sabe</p>
+      <h2 id="contato-title" class="contact__title">Vamos<br />conversar?</h2>
+      <a class="contact__mail" href="mailto:pedro.s.colbert@gmail.com" data-cursor="link">pedro.s.colbert@gmail.com</a>
+      <div class="contact__actions">
+        <button type="button" class="btn btn--solid" data-copy="pedro.s.colbert@gmail.com" data-magnetic>Copiar e-mail</button>
+        <a class="btn" href="https://www.linkedin.com/in/pedro-colbert/" target="_blank" rel="noopener" data-magnetic>LinkedIn <span aria-hidden="true">↗</span></a>
+        <a class="btn" href="https://github.com/PedroColbert" target="_blank" rel="noopener" data-magnetic>GitHub <span aria-hidden="true">↗</span></a>
+        <a class="btn" href="./cv/Pedro_Colbert_Curriculo.pdf" download data-magnetic>Currículo em PDF <span aria-hidden="true">↓</span></a>
+      </div>
+      <footer class="footer mono">
+        <span>© 2026 Pedro Colbert</span>
+        <span>Feito com IA, revisado por humano.</span>
+        <span class="footer__music" hidden>Música: “Chill Day”, de <a href="https://soundcloud.com/lakeyinspired/chill-day" target="_blank" rel="noopener">LAKEY INSPIRED</a>, sob licença Creative Commons BY-SA.</span>
+        <a href="#inicio">Voltar ao topo ↑</a>
+      </footer>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

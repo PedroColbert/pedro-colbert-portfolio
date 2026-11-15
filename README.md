@@ -1,29 +1,19 @@
-# Pedro Colbert — Portfólio
+# Pedro Colbert, currículo online
 
-Portfólio profissional publicado no GitHub Pages:  
-**https://pedrocolbert.github.io/pedro-colbert-portfolio/**
+Site de currículo de Pedro Colbert, desenvolvedor de software com IA.
+Publicado em https://pedrocolbert.github.io/pedro-colbert-portfolio/
 
-## Posicionamento
+## Rodar
 
-Desenvolvimento de software assistido por IA, engenharia de prompts, coordenação de agentes de programação, automações e IA aplicada a negócios.
+```bash
+npm install
+npm run dev
+```
 
-## Estrutura
+`npm run build` gera a versão estática em `dist/`. Cada envio para a branch `main` publica o site no GitHub Pages (`.github/workflows/pages.yml`).
 
-- `index.html` — página principal, responsiva e monocromática.
-- `curriculo.html` — currículo profissional atualizado, com opção **Imprimir / salvar em PDF**.
-- `Curriculo_pedro_colbert.pdf` — **arquivo legado**, referente ao antigo posicionamento em Segurança da Informação. Preservado apenas por compatibilidade; não está mais vinculado à página principal.
+## Feito com
 
-## Projetos
+Vite, TypeScript, GSAP e Lenis, com efeitos de código aberto do [React Bits](https://reactbits.dev) em `src/reactbits/`.
 
-Projetos corporativos são apresentados por meio de estudos de caso resumidos. Nenhum código privado, dado de produção, credencial, endereço interno ou artefato confidencial da empresa deve ser publicado aqui sem autorização.
-
-A página distingue projetos concluídos, automações em validação e protótipos. Também diferencia IA **usada no desenvolvimento** de IA **integrada ao produto**.
-
-## Publicação
-
-A branch `main` é a fonte do site. Alterações nos arquivos HTML são publicadas por GitHub Pages.
-
-## Contato
-
-LinkedIn: https://www.linkedin.com/in/pedro-colbert/  
-GitHub: https://github.com/PedroColbert
+Música: "Chill Day", de [LAKEY INSPIRED](https://soundcloud.com/lakeyinspired/chill-day), sob licença Creative Commons BY-SA.
