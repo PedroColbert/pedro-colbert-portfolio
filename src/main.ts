@@ -8,6 +8,7 @@ import { SplitText } from 'gsap/SplitText';
 import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 import Lenis from 'lenis';
 import { heroCanvas } from './hero-canvas';
+import { listenTo } from './beat';
 
 gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
 
@@ -125,6 +126,7 @@ async function startMusic() {
   try { await music.play(); } catch { return; } // som automático barrado: continua armada, à espera de um gesto
   if (!soundWanted) { music.pause(); return; } // desligaram enquanto carregava
   soundPlaying = true;
+  listenTo(music); // a esfera do hero passa a pulsar com a batida
   gsap.to(music, { volume: VOLUME, duration: 1.6, ease: 'power1.out', overwrite: true });
   paintSound();
   if (!soundAnnounced) {

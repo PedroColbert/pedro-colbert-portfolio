@@ -39,6 +39,8 @@ export interface CrystalizedBallProps extends Partial<PresetValues> {
   hoverStrength?: number;
   intro?: boolean;
   paused?: boolean;
+  /** Adaptação do site: função lida a cada quadro (0 a 1) que faz a esfera pulsar com a música. */
+  pulse?: () => number;
   className?: string;
   style?: CSSProperties;
 }
@@ -56,6 +58,7 @@ interface Palette {
 }
 
 interface Settings extends Omit<PresetValues, 'color'> {
+  pulse?: () => number;
   light: boolean;
   palette: Palette;
   size: number;
@@ -849,7 +852,9 @@ void main() {
     float near = exp(-dot(p.xy - uKick.xy, p.xy - uKick.xy) / 0.4);
     vec3 spinKick = vec3(-p.z, 0.0, p.x) * 0.9;
     vec3 lift = vec3(0.0, 0.5 + 0.8 * random(id * 7u + 15u), 0.0) * (0.3 + 0.7 * smoothstep(0.2, -0.8, p.y));
-    v += (jolt * 0.8 + spinKick + lift) * uKick.z * (0.4 + 0.45 * near);
+    // uKick.w = 1 no pulo da batida (adaptação do site): menos espalhamento e giro, mais impulso para cima
+    float hop = uKick.w;
+    v += (jolt * 0.8 * (1.0 - 0.6 * hop) + spinKick * (1.0 - hop) + lift * (1.0 + 1.0 * hop)) * uKick.z * (0.4 + 0.45 * near);
   }
 
   v += acc * uDt;
@@ -924,6 +929,7 @@ const CrystalizedBall = ({
   hoverStrength = 0.7,
   intro = true,
   paused = false,
+  pulse,
   className = '',
   style
 }: CrystalizedBallProps) => {
@@ -963,7 +969,8 @@ const CrystalizedBall = ({
       interactive,
       hoverStrength,
       intro,
-      paused
+      paused,
+      pulse
     };
     wakeRef.current?.();
   });
@@ -1235,7 +1242,9 @@ const CrystalizedBall = ({
     let surge = 0;
     let stirring = 0;
     let stirEnergy = 0;
-    let kick: { x: number; y: number; strength: number } | null = null;
+    let kick: { x: number; y: number; strength: number; hop?: number } | null = null;
+    let lastBeat = 0;
+    let beatCooldown = 0;
     let nextArc = 0.3;
     const arcs: Arc[] = [];
     const pointer = { x: 0, y: 0, inside: false, fresh: true };
@@ -1287,7 +1296,16 @@ const CrystalizedBall = ({
       const presence = easeOut(smooth(0, 0.42, introClock));
       const unfold = easeOut(smooth(0, 0.32, introClock));
       const charge = Math.sin(Math.PI * smooth(0.22, 0.78, introClock)) * 0.35;
-      const radius = Math.max(8, (clamp(s.size, 0.1, 1.5) * Math.min(width, height)) / 2);
+      // Pulso da música (adaptação do site): a esfera cresce um pouco e brilha mais em cada batida
+      const beat = moving && s.pulse ? clamp(s.pulse(), 0, 1) : 0;
+      const radius = Math.max(8, (clamp(s.size, 0.1, 1.5) * Math.min(width, height)) / 2) * (1 + beat * 0.035);
+      // Em cada batida nova, os fragmentos do fundo levam um empurrão para cima e pulam
+      beatCooldown = Math.max(0, beatCooldown - dt);
+      if (beat > 0.25 && beat - lastBeat > 0.1 && beatCooldown === 0 && !kick && introClock > 0.6) {
+        kick = { x: 0, y: -0.7, strength: 0.35 + beat * 0.6, hop: 1 };
+        beatCooldown = 0.22;
+      }
+      lastBeat = beat;
 
       const strength = s.interactive && !reducedMotion ? clamp(s.hoverStrength, 0, 1) : 0;
       const px = pointer.x - width / 2;
@@ -1328,12 +1346,12 @@ const CrystalizedBall = ({
       stirEnergy = stirEnergy * Math.exp(-dt / 1.2) + brushPower * Math.min(brushSpeed, 4) * dt;
 
       if (moving) {
-        const pace = 1 + surge * 0.6 + heat.power * heat.near * 0.3;
+        const pace = 1 + surge * 0.6 + heat.power * heat.near * 0.3 + beat * 0.8;
         const step = dt * Math.max(0, s.speed) * 2 * pace;
         rimTime += step;
         dustTime += dt * Math.max(0, s.dustSpeed) * (1 + surge * 0.4);
         swayClock += dt * Math.max(0, s.dustSpeed);
-        const crackleNow = clamp(s.crackle + surge * 0.5, 0, 1.5);
+        const crackleNow = clamp(s.crackle + surge * 0.5 + beat * 0.6, 0, 1.5);
         if (s.sparks > 0.01 && introClock > 0.55) {
           nextArc -= step * s.sparks * 2 * (0.6 + crackleNow * 0.6);
           if (nextArc <= 0) {
@@ -1376,9 +1394,9 @@ const CrystalizedBall = ({
       fieldUniforms.uFrame.value = Math.floor(rimTime * 24) % 100000;
       fieldUniforms.uBins.value = clamp(Math.round((Math.PI * 2 * radius) / 2.6), 240, 900);
       fieldUniforms.uStrands.value = Math.round(clamp(s.strands, 1, MAX_STRANDS));
-      fieldUniforms.uCrackle.value = clamp(s.crackle, 0, 1) + surge * 0.5 + charge;
+      fieldUniforms.uCrackle.value = clamp(s.crackle, 0, 1) + surge * 0.5 + charge + beat * 0.45;
       fieldUniforms.uFlares.value = clamp(s.flares, 0, 1);
-      fieldUniforms.uGlow.value = clamp(s.glow, 0, 2) * (1 + surge * 0.5 + charge) * (s.light ? 0.35 : 1);
+      fieldUniforms.uGlow.value = clamp(s.glow, 0, 2) * (1 + surge * 0.5 + charge + beat * 0.7) * (s.light ? 0.35 : 1);
       fieldUniforms.uHaze.value = clamp(s.haze, 0, 2) * (s.light ? 0.6 : 1);
       fieldUniforms.uFill.value = clamp(s.fill, 0, 1);
       fieldUniforms.uPresence.value = presence;
@@ -1425,7 +1443,7 @@ const CrystalizedBall = ({
         stirUniforms.uDt.value = Math.min(dt, 1 / 30);
         stirUniforms.uBrush.value = [brush.x, brush.y, brush.vx * cap, brush.vy * cap];
         stirUniforms.uBrushPower.value = brushPower;
-        stirUniforms.uKick.value = kick ? [kick.x, kick.y, kick.strength, 0] : [0, 0, 0, 0];
+        stirUniforms.uKick.value = kick ? [kick.x, kick.y, kick.strength, kick.hop ?? 0] : [0, 0, 0, 0];
         stirUniforms.tOffset.value = layer.read.textures[0];
         stirUniforms.tVelocity.value = layer.read.textures[1];
         renderer.render({ scene: stirMesh, target: layer.write, clear: false });

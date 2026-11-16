@@ -8,6 +8,7 @@ import { SiClaude, SiGit, SiGooglegemini, SiJavascript, SiLaravel, SiMysql, SiPh
 import { TbApi, TbBrandOpenai, TbBrandPowershell, TbDatabase } from 'react-icons/tb';
 import ClickSpark, { type ClickSparkHandle } from './reactbits/ClickSpark';
 import CrystalizedBall from './reactbits/CrystalizedBall';
+import { beat } from './beat';
 import Cubes from './reactbits/Cubes';
 import CursorGrid from './reactbits/CursorGrid';
 import DotGrid from './reactbits/DotGrid';
@@ -56,7 +57,7 @@ function HeroBall() {
       crackle={0.85} fill={0.5} strands={6} flares={0.65} glow={0.9} sparks={0.6}
       particleCount={small ? 8000 : 15000} motion="rise" particleShape="square"
       depth={0.6} sway={0.5} twinkle={0.5} haze={0.7} dustSpeed={1} speed={1}
-      interactive hoverStrength={0.7} intro
+      interactive hoverStrength={0.7} intro pulse={beat}
     />
   );
 }
