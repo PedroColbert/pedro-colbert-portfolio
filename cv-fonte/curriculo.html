@@ -1,0 +1,134 @@
+<!doctype html>
+<!-- Fonte do currículo em PDF. Não é publicada: o PDF é gerado a partir daqui com `npm run cv`
+     e salvo em public/cv/Pedro_Colbert_Curriculo.pdf. Os fatos vêm do levantamento do Pedro;
+     sistemas e fornecedores da empresa aparecem sem nome ("ERP da empresa"), a pedido dele. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Pedro Colbert, currículo</title>
+<link rel="stylesheet" href="../node_modules/@fontsource-variable/inter/index.css" />
+<link rel="stylesheet" href="../node_modules/@fontsource-variable/bricolage-grotesque/wdth.css" />
+<style>
+  @page { size: A4; margin: 13mm 15mm 12mm; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font-family: 'Inter Variable', Arial, sans-serif; font-size: 9.6pt; line-height: 1.42; color: #17171a; }
+  h1, h2, h3, p, ul { margin: 0; padding: 0; }
+  a { color: inherit; text-decoration: none; }
+  :root { --accent: #d83a14; --soft: #5a5750; --line: #d9d5cc; }
+
+  header { display: grid; grid-template-columns: 1fr auto; gap: 14pt; align-items: end; padding-bottom: 9pt; border-bottom: 2pt solid #17171a; }
+  h1 { font-family: 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif; font-stretch: 82%; font-weight: 800; font-size: 34pt; line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; }
+  .role { margin-top: 6pt; font-size: 11.5pt; font-weight: 650; }
+  .role span { color: var(--accent); }
+  .contact { text-align: right; font-size: 8.8pt; line-height: 1.5; color: var(--soft); }
+  .contact b { color: #17171a; font-weight: 600; }
+
+  h2 { margin: 11pt 0 5pt; font-size: 8pt; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+  .lead { font-size: 10.2pt; line-height: 1.45; }
+
+  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 4pt 16pt; }
+  .skills p { break-inside: avoid; }
+  .skills b { font-weight: 650; }
+
+  .job { display: grid; grid-template-columns: 1fr auto; gap: 0 12pt; align-items: baseline; }
+  .job h3, .proj h3 { font-size: 10.6pt; font-weight: 700; }
+  .job .when, .proj .kind { font-size: 8.6pt; color: var(--soft); white-space: nowrap; }
+  ul { list-style: none; grid-column: 1 / -1; margin-top: 3pt; }
+  li { position: relative; padding-left: 10pt; margin-bottom: 1.6pt; }
+  li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 5pt; height: 1pt; background: var(--accent); }
+  .earlier { margin-top: 5pt; font-size: 9.2pt; color: var(--soft); }
+  .earlier b { color: #17171a; font-weight: 600; }
+
+  .proj { break-inside: avoid; padding: 6pt 0; border-top: 0.6pt solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 0 12pt; align-items: baseline; }
+  .proj:first-of-type { border-top: 0; padding-top: 0; }
+  .proj p { grid-column: 1 / -1; margin-top: 1.5pt; }
+  .proj .stack { grid-column: 1 / -1; margin-top: 2pt; font-size: 8.6pt; color: var(--soft); }
+  .page2 { break-before: page; }
+  .method { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10pt; }
+  .method div { border-top: 1.4pt solid #17171a; padding-top: 4pt; font-size: 9pt; }
+  .method b { display: block; font-size: 9.6pt; margin-bottom: 1pt; }
+  .method i { font-style: normal; color: var(--accent); font-weight: 700; margin-right: 3pt; }
+  footer { margin-top: 10pt; padding-top: 6pt; border-top: 0.6pt solid var(--line); font-size: 8.4pt; color: var(--soft); }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Pedro Colbert</h1>
+      <p class="role">Desenvolvedor de software com IA <span>· sistemas corporativos, integrações e automação</span></p>
+    </div>
+    <p class="contact">
+      São Paulo, SP · <b>(11) 97570-0491</b><br />
+      <b><a href="mailto:pedro.s.colbert@gmail.com">pedro.s.colbert@gmail.com</a></b><br />
+      <a href="https://www.linkedin.com/in/pedro-colbert/">linkedin.com/in/pedro-colbert</a><br />
+      <a href="https://github.com/PedroColbert">github.com/PedroColbert</a><br />
+      <a href="https://pedrocolbert.github.io/pedro-colbert-portfolio/">pedrocolbert.github.io/pedro-colbert-portfolio</a>
+    </p>
+  </header>
+
+  <h2>Perfil</h2>
+  <p class="lead">Desenvolvedor de software com experiência em ambiente corporativo: aplicações web, integrações com ERP e APIs, bancos de dados relacionais e automação de processos e de infraestrutura. Uso agentes de IA em todo o ciclo de desenvolvimento, da especificação aos testes, e respondo pela revisão e pela validação de cada entrega.</p>
+
+  <h2>Competências</h2>
+  <div class="skills">
+    <p><b>Desenvolvimento de software.</b> PHP, Laravel, React, TypeScript, JavaScript e Next.js; aplicações web corporativas com regras de negócio, controle de acesso, fluxos de aprovação e APIs.</p>
+    <p><b>Integrações, automação e dados.</b> APIs REST, OAuth 2.0, Python, PowerShell, Power Automate, Microsoft Graph, Oracle, PL/SQL, SQL Server e MySQL.</p>
+    <p><b>IA no desenvolvimento.</b> ChatGPT, Codex, Claude Code, Gemini e modelos locais; contexto técnico, instruções com critérios de aceite e revisão crítica do código gerado.</p>
+    <p><b>Requisitos, testes e validação.</b> Levantamento de requisitos, desenho de soluções, testes automatizados (PHPUnit, Playwright), diagnóstico de falhas, Git e controle de mudanças.</p>
+  </div>
+
+  <h2>Experiência</h2>
+  <div class="job">
+    <h3>Desenvolvedor Full Stack · Trisul S.A.</h3><span class="when">nov/2025 – atual</span>
+    <ul>
+      <li>Desenvolvo sistemas web corporativos em Laravel, React e TypeScript, como o de contratações do RH e o de inventário de ativos de TI, com fluxos de aprovação, controle de acesso e testes automatizados.</li>
+      <li>Construo integrações entre o ERP da empresa, bancos Oracle, SQL Server e MySQL e APIs REST com OAuth 2.0, incluindo procedures com validação, controle de concorrência e rollback.</li>
+      <li>Automatizo rotinas de infraestrutura e de negócio em PowerShell e Python: preparação de ambientes do ERP por etapas, com retomada após reinicialização, e processamento de documentos recebidos por e-mail.</li>
+      <li>Conduzo o desenvolvimento com agentes de IA, dos requisitos à validação, e integro o comitê interno de IA, no qual participei do protótipo de um hub com modelos locais.</li>
+    </ul>
+  </div>
+  <p class="earlier"><b>Trajetória anterior na Trisul S.A.</b> Assistente de Atendimento ao Usuário, Service Desk N2 (2025): incidentes, identidades, acessos e automações internas. Estagiário de TI em Infraestrutura e Redes (2024–2025): monitoramento, suporte e scripts em Python e Power Automate. Jovem Aprendiz em TI (2023–2024): suporte técnico, manutenção e inventário de equipamentos.</p>
+
+  <h2>Formação e cursos</h2>
+  <p><b>Tecnólogo em Análise e Desenvolvimento de Sistemas</b>, SENAC, 2023–2025 (concluído). Cursos: Engenharia de Prompt: ChatGPT, Gemini e Meta AI (Udemy) e Python Essentials (Cisco).</p>
+
+  <h2>Como trabalho com IA</h2>
+  <div class="method">
+    <div><b><i>1</i>Requisito</b>Entendo o problema com quem vai usar a solução e escrevo o que ela precisa fazer, com critérios de aceite.</div>
+    <div><b><i>2</i>Contexto</b>Reúno o contexto técnico: banco, código existente, restrições de segurança e o que não pode mudar.</div>
+    <div><b><i>3</i>Agente</b>Divido o trabalho em etapas e uso agentes de programação, acompanhando cada mudança.</div>
+    <div><b><i>4</i>Validação</b>Reviso o código, executo os testes e respondo pela entrega.</div>
+  </div>
+
+  <h2 class="page2">Projetos</h2>
+  <div class="proj">
+    <h3>Sistema de contratações e abertura de vagas do RH</h3><span class="kind">Desenvolvimento Full Stack</span>
+    <p>A abertura de vagas dependia de aprovações espalhadas entre gestores e RH. O sistema leva cada requisição do rascunho à validação final, seguindo a hierarquia da empresa: aprovação em sequência, devolução, reenvio, reprovação e cancelamento, com histórico, notificações, controle de acesso por perfil, substituição auditada de aprovadores e integração com os dados organizacionais. <b>1.646 de 1.649 verificações aprovadas no relatório de QA e 637 testes de regressão aprovados.</b></p>
+    <p class="stack">PHP · Laravel · React · TypeScript · MySQL · PHPUnit</p>
+  </div>
+  <div class="proj">
+    <h3>Provisionamento automatizado do servidor do ERP</h3><span class="kind">Automação de ERP</span>
+    <p>Preparar o servidor do ERP exigia instalações manuais em sequência e várias reinicializações. A automação organiza o processo em <b>8 etapas</b> verificáveis e repetíveis, com estado persistido, logs, retomada após cada reinicialização e interrupção na primeira falha. Uma rotina complementar em Python registra o ERP e ajusta as configurações do ambiente de testes depois da restauração do banco.</p>
+    <p class="stack">PowerShell · Python · Oracle · Windows Server</p>
+  </div>
+  <div class="proj">
+    <h3>Integrações por API com autenticação OAuth 2.0</h3><span class="kind">APIs e integrações</span>
+    <p>Sistemas internos precisavam trocar dados sem acesso direto ao banco. As integrações passam por uma plataforma de APIs, com autenticação e renovação de tokens: um coletor em PowerShell envia o inventário e o estado de cada máquina para o sistema de ativos de TI, e uma API cria usuários no ERP por procedures que validam a entrada, bloqueiam duplicidade e desfazem tudo em caso de erro. <b>Fluxos testados com dados reais e com chamadas simultâneas.</b></p>
+    <p class="stack">APIs REST · OAuth 2.0 · PowerShell · PL/SQL · MySQL</p>
+  </div>
+  <div class="proj">
+    <h3>Processamento automático de documentos recebidos por e-mail</h3><span class="kind">Automação corporativa</span>
+    <p>Documentos em PDF chegavam por e-mail e dependiam de tratamento manual. A rotina em Python lê a caixa corporativa, identifica os anexos e registra tudo em banco de dados, com controle de duplicidade, tratamento de falhas, notificações e retenção de arquivos. Foi projetada para substituir um fluxo anterior em Power Automate. <b>O modo de simulação mapeou 7.715 mensagens sem alterar nada na caixa; 92 testes automatizados.</b></p>
+    <p class="stack">Python · Microsoft Graph · SQL Server · OAuth 2.0</p>
+  </div>
+  <div class="proj">
+    <h3>Relatórios e consultas sobre os dados do ERP</h3><span class="kind">Integração de dados</span>
+    <p>As informações do ERP ficam espalhadas em tabelas que exigem conhecimento técnico para cruzar. Consultas, views e relatórios entregam esses dados prontos às áreas internas, entre eles uma view contábil que consolida os lançamentos do ano, cerca de 294 mil registros. <b>Abertura de relatórios recuperada em produção para usuários remotos</b>, com backup antes de cada mudança.</p>
+    <p class="stack">Oracle · SQL · PL/SQL · SQL Server · Crystal Reports</p>
+  </div>
+
+  <h2>Outros projetos</h2>
+  <p><b>Plataforma de gestão para pequenos prestadores de serviço</b> (pessoal): base multiempresa com dados isolados por empresa, em Next.js, TypeScript e PostgreSQL. <b>Currículo online interativo</b>: construído com o mesmo método, em <a href="https://pedrocolbert.github.io/pedro-colbert-portfolio/">pedrocolbert.github.io/pedro-colbert-portfolio</a>.</p>
+</body>
+</html>
