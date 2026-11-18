@@ -11,14 +11,14 @@ const output = resolve(process.env.CV_OUTPUT || here('../public/cv/Pedro_Colbert
 const explicit = process.env.CV_BROWSER;
 const names = process.platform === 'win32'
   ? ['msedge.exe', 'chrome.exe', 'chromium.exe']
-  : ['microsoft-edge', 'google-chrome', 'google-chrome-stable', 'chromium', 'chromium-browser'];
+  : ['google-chrome', 'google-chrome-stable', 'chromium', 'chromium-browser', 'microsoft-edge'];
 const fixed = process.platform === 'win32'
   ? [
       join(process.env['PROGRAMFILES(X86)'] || 'C:/Program Files (x86)', 'Microsoft/Edge/Application/msedge.exe'),
       join(process.env.PROGRAMFILES || 'C:/Program Files', 'Microsoft/Edge/Application/msedge.exe'),
       join(process.env.PROGRAMFILES || 'C:/Program Files', 'Google/Chrome/Application/chrome.exe'),
     ]
-  : ['/usr/bin/chromium', '/usr/bin/chromium-browser', '/usr/bin/google-chrome', '/opt/google/chrome/chrome'];
+  : ['/usr/bin/google-chrome', '/opt/google/chrome/chrome', '/usr/bin/chromium', '/usr/bin/chromium-browser'];
 
 function locate(candidate) {
   if (isAbsolute(candidate) || candidate.includes('/') || candidate.includes('\\')) {
