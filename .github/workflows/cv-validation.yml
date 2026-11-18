@@ -18,7 +18,6 @@ jobs:
       - run: npm run cv
         env:
           CV_OUTPUT: ${{ runner.temp }}/cv-teste.pdf
-          CV_BROWSER: /usr/bin/google-chrome
       - uses: actions/upload-artifact@v4
         with:
           name: cv-teste
