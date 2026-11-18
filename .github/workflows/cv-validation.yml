@@ -1,0 +1,24 @@
+name: Validar gerador do currículo
+on:
+  push:
+    branches: [cv-pdf-validation-20261118]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run cv
+        env:
+          CV_OUTPUT: ${{ runner.temp }}/cv-teste.pdf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cv-teste
+          path: ${{ runner.temp }}/cv-teste.pdf
