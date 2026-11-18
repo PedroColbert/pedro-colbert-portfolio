@@ -1,135 +1,100 @@
 <!doctype html>
-<!-- Fonte do currículo em PDF. Não é publicada: o PDF é gerado a partir daqui com `npm run cv`
-     e salvo em public/cv/Pedro_Colbert_Curriculo.pdf. Os fatos vêm do levantamento do Pedro;
-     sistemas e fornecedores da empresa aparecem sem nome ("ERP da empresa"), a pedido dele. -->
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
 <title>Pedro Colbert, currículo</title>
-<link rel="stylesheet" href="../node_modules/@fontsource-variable/inter/index.css" />
 <link rel="stylesheet" href="../node_modules/@fontsource-variable/bricolage-grotesque/wdth.css" />
 <style>
-  @page { size: A4; margin: 13mm 15mm 12mm; }
+  @font-face { font-family: Lato; src: url('./fonts/lato-latin-400-normal.woff2'); font-weight: 400; }
+  @font-face { font-family: Lato; src: url('./fonts/lato-latin-700-normal.woff2'); font-weight: 700; }
+  @font-face { font-family: Lato; src: url('./fonts/lato-latin-900-normal.woff2'); font-weight: 900; }
+  @page { size: A4; margin: 0; }
   * { box-sizing: border-box; }
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { margin: 0; font-family: 'Inter Variable', Arial, sans-serif; font-size: 9.6pt; line-height: 1.42; color: #17171a; }
-  h1, h2, h3, p, ul { margin: 0; padding: 0; }
+  body { margin: 0; font-family: Lato, Arial, sans-serif; color: #202024; font-size: 9pt; line-height: 1.35; }
   a { color: inherit; text-decoration: none; }
-  :root { --accent: #d83a14; --soft: #5a5750; --line: #d9d5cc; }
-
-  header { display: grid; grid-template-columns: 1fr auto; gap: 14pt; align-items: end; padding-bottom: 9pt; border-bottom: 2pt solid #17171a; }
-  h1 { font-family: 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif; font-stretch: 82%; font-weight: 800; font-size: 34pt; line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; }
-  .role { margin-top: 6pt; font-size: 11.5pt; font-weight: 650; }
-  .role span { color: var(--accent); }
-  .contact { text-align: right; font-size: 8.8pt; line-height: 1.5; color: var(--soft); }
-  .contact b { color: #17171a; font-weight: 600; }
-
-  h2 { margin: 11pt 0 5pt; font-size: 8pt; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
-  .lead { font-size: 10.2pt; line-height: 1.45; }
-
-  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 4pt 16pt; }
-  .skills p { break-inside: avoid; }
-  .skills b { font-weight: 650; }
-
-  .job { display: grid; grid-template-columns: 1fr auto; gap: 0 12pt; align-items: baseline; }
-  .job h3, .proj h3 { font-size: 10.6pt; font-weight: 700; }
-  .job .when, .proj .kind { font-size: 8.6pt; color: var(--soft); white-space: nowrap; }
-  ul { list-style: none; grid-column: 1 / -1; margin-top: 3pt; }
-  li { position: relative; padding-left: 10pt; margin-bottom: 1.6pt; }
-  li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 5pt; height: 1pt; background: var(--accent); }
-  .earlier { margin-top: 5pt; font-size: 9.2pt; color: var(--soft); }
-  .earlier b { color: #17171a; font-weight: 600; }
-
-  .proj { break-inside: avoid; padding: 6pt 0; border-top: 0.6pt solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 0 12pt; align-items: baseline; }
-  .proj:first-of-type { border-top: 0; padding-top: 0; }
-  .proj p { grid-column: 1 / -1; margin-top: 1.5pt; }
-  .proj .stack { grid-column: 1 / -1; margin-top: 2pt; font-size: 8.6pt; color: var(--soft); }
-  .page2 { break-before: page; }
-  .method { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10pt; }
-  .method div { border-top: 1.4pt solid #17171a; padding-top: 4pt; font-size: 9pt; }
-  .method b { display: block; font-size: 9.6pt; margin-bottom: 1pt; }
-  .method i { font-style: normal; color: var(--accent); font-weight: 700; margin-right: 3pt; }
-  footer { margin-top: 10pt; padding-top: 6pt; border-top: 0.6pt solid var(--line); font-size: 8.4pt; color: var(--soft); }
+  h1, h2, h3, p, ul { margin: 0; }
+  .page { width: 210mm; height: 297mm; padding: 12mm 15mm 13mm; position: relative; break-after: page; overflow: hidden; }
+  .page:last-child { break-after: auto; }
+  .mark { width: 12mm; height: 1.3mm; background: #e84520; margin-bottom: 8mm; }
+  header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1.2pt solid #202024; padding-bottom: 6mm; }
+  h1 { font-family: 'Bricolage Grotesque Variable', Lato, sans-serif; font-size: 28pt; line-height: .96; font-weight: 900; letter-spacing: -.035em; }
+  .role { color: #e84520; font-size: 10.5pt; font-weight: 700; text-transform: uppercase; }
+  .tagline { color: #55545a; margin-top: 2mm; letter-spacing: .025em; }
+  .contact { text-align: right; color: #55545a; line-height: 1.6; font-size: 8pt; }
+  h2 { color: #e84520; font-size: 8.6pt; font-weight: 700; text-transform: uppercase; border-bottom: .6pt solid #d5d5d5; padding-bottom: 1.2mm; margin: 5mm 0 2mm; }
+  .profile { line-height: 1.44; }
+  .job { margin: 2mm 0; }
+  .job-head { display: flex; justify-content: space-between; border-top: .5pt solid #ddd; padding-top: 1mm; align-items: baseline; }
+  .job:first-of-type .job-head { border-top: 0; }
+  h3 { font-size: 9.7pt; font-weight: 700; }
+  .when { color: #55545a; font-size: 8.4pt; white-space: nowrap; }
+  ul { list-style: none; padding: 0; margin: 2mm 0; }
+  li { padding-left: 5mm; position: relative; margin-bottom: 1.7mm; }
+  li::before { content: '•'; position: absolute; left: 0; color: #e84520; }
+  .skills p { margin: 1.2mm 0; }
+  .skills b, .courses b, .project b { font-weight: 700; }
+  footer { position: absolute; bottom: 11mm; left: 15mm; right: 15mm; border-top: .5pt solid #d5d5d5; padding-top: 2mm; display: flex; justify-content: space-between; color: #66656a; font-size: 7.8pt; letter-spacing: .02em; }
+  .page-title { font-family: 'Bricolage Grotesque Variable', Lato, sans-serif; font-size: 19pt; font-weight: 900; }
+  .page-sub { color: #66656a; font-size: 8.5pt; margin: 1mm 0 4mm; }
+  .page-rule { border-bottom: 1pt solid #202024; }
+  .project { border-top: .6pt solid #d5d5d5; padding: 3mm 0 4mm; }
+  .project:first-of-type { margin-top: 5mm; }
+  .project-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .kind { color: #e84520; text-transform: uppercase; font-size: 7.8pt; font-weight: 700; }
+  .project p { margin-top: 2mm; }
+  .stack { color: #55545a; font-size: 8pt; }
+  .method, .other { margin-top: 4mm; }
+  .method h2, .other h2 { margin-top: 0; }
 </style>
 </head>
 <body>
+<section class="page">
+  <div class="mark"></div>
   <header>
-    <div>
-      <h1>Pedro Colbert</h1>
-      <p class="role">Desenvolvedor de software com IA <span>· sistemas corporativos, integrações e automação</span></p>
-    </div>
-    <p class="contact">
-      São Paulo, SP · <b>(11) 97570-0491</b><br />
-      <b><a href="mailto:pedro.s.colbert@gmail.com">pedro.s.colbert@gmail.com</a></b><br />
+    <div><h1>PEDRO COLBERT</h1><p class="role">Desenvolvedor de software com IA</p><p class="tagline">Sistemas corporativos · Integrações · Automação</p></div>
+    <p class="contact">São Paulo, SP · (11) 97570-0491<br />
+      <a href="mailto:pedro.s.colbert@gmail.com">pedro.s.colbert@gmail.com</a><br />
       <a href="https://www.linkedin.com/in/pedro-colbert/">linkedin.com/in/pedro-colbert</a><br />
       <a href="https://github.com/PedroColbert">github.com/PedroColbert</a><br />
-      <a href="https://pedrocolbert.github.io/pedro-colbert-portfolio/">pedrocolbert.github.io/pedro-colbert-portfolio</a>
-    </p>
+      <a href="https://pedrocolbert.github.io/pedro-colbert-portfolio/">pedrocolbert.github.io/pedro-colbert-portfolio</a></p>
   </header>
-
-  <h2>Perfil</h2>
-  <p class="lead">Desenvolvedor de software com experiência em ambiente corporativo: sistemas web, integrações com ERP e APIs, bancos de dados e automação de infraestrutura. Já digitalizei o processo de contratações do RH, reduzi em 75% o tempo de um procedimento de recuperação de desastres e construí integrações que apoiam a Segurança da Informação. Uso agentes de IA em todo o ciclo de desenvolvimento e respondo pela validação de cada entrega.</p>
-
-  <h2>Competências</h2>
-  <div class="skills">
-    <p><b>Engenharia de software.</b> PHP, Laravel, React, TypeScript, JavaScript, Next.js e MySQL; sistemas web corporativos com APIs, regras de negócio, autenticação, controle de acesso e fluxos de aprovação.</p>
-    <p><b>Integrações, dados e automação.</b> Oracle, PL/SQL, SQL Server, Crystal Reports, PowerShell, Python, APIs REST e OAuth 2.0; Microsoft 365, Microsoft Graph, Power Automate, Azure e Active Directory.</p>
-    <p><b>IA aplicada e engenharia de agentes.</b> Claude Code, Codex, ChatGPT, Gemini e modelos locais; contexto técnico, engenharia de prompts, critérios de aceite e criação de skills, instruções reutilizáveis que padronizam a execução dos agentes.</p>
-    <p><b>Arquitetura, qualidade e adoção de IA.</b> Análise de requisitos, desenho de soluções, testes (PHPUnit, Playwright), revisão de código e Git; avaliação de ferramentas de IA e recomendações técnicas no comitê interno.</p>
-  </div>
-
-  <h2>Experiência</h2>
-  <div class="job">
-    <h3>Desenvolvedor Full Stack · Trisul S.A.</h3><span class="when">nov/2025 – atual</span>
+  <h2>Perfil profissional</h2>
+  <p class="profile">Desenvolvedor de software com atuação em sistemas corporativos, integrações, automação de processos e infraestrutura. Desenvolvi funcionalidades de um sistema de contratações utilizado e avaliado pelo RH, automatizei procedimentos de recuperação de ambientes e construí integrações que apoiam a Segurança da Informação. Utilizo agentes de IA da especificação aos testes, com revisão técnica e responsabilidade sobre as entregas.</p>
+  <h2>Experiência profissional</h2>
+  <div class="job"><div class="job-head"><h3>Desenvolvedor Full Stack | Trisul S.A.</h3><span class="when">2025 – atual</span></div>
     <ul>
-      <li>Desenvolvi o sistema corporativo de contratações do RH, em Laravel, React e TypeScript, que digitalizou a abertura e a aprovação de vagas e centralizou a comunicação entre RH e gestores.</li>
-      <li>Automatizei o Plano de Recuperação de Desastres do ambiente do ERP em PowerShell, reduzindo a execução de cerca de 6 horas para 1h30.</li>
-      <li>Construí integrações por API com OAuth 2.0: a coleta que mantém o inventário de equipamentos usado pela Segurança da Informação e a criação de usuários no ERP por procedures de banco, com validação, controle de concorrência e rollback.</li>
-      <li>Desenvolvo relatórios e customizações em Crystal Reports, Oracle e SQL Server, e automações com Python e Microsoft Graph para a continuidade de processos documentais.</li>
-      <li>Participo do comitê interno de IA: avalio ferramentas, faço recomendações técnicas, oriento colegas e crio skills e instruções reutilizáveis para agentes de programação.</li>
+      <li>Desenvolvi funcionalidades para solicitações e aprovações de vagas do RH, utilizadas e avaliadas pela área; o sistema segue em evolução e homologação.</li>
+      <li>Automatizei procedimentos técnicos do DRP do ERP com PowerShell, com execução estruturada e redução de intervenções manuais.</li>
+      <li>Implementei integrações por API e OAuth 2.0 para inventário de equipamentos, com dados que apoiam a análise de antivírus, BitLocker e vulnerabilidades.</li>
+      <li>Desenvolvo relatórios e customizações em Crystal Reports, Oracle e SQL Server, além de automações documentais com Python e Microsoft Graph.</li>
+      <li>Participo do comitê interno de IA, contribuindo com avaliação de ferramentas, orientação de uso e criação de skills e instruções para agentes.</li>
     </ul>
   </div>
-  <p class="earlier"><b>Trajetória anterior na Trisul S.A.</b> Assistente de Atendimento ao Usuário, Service Desk N2 (2025): incidentes de segundo nível, identidades e acessos no Active Directory e no Microsoft 365, automações internas. Estagiário de TI em Infraestrutura e Redes (2024–2025): monitoramento, suporte, scripts em Python e fluxos em Power Automate. Jovem Aprendiz em TI (2023–2024): suporte técnico, manutenção e inventário de equipamentos.</p>
-
-  <h2>Formação e cursos</h2>
-  <p><b>Tecnólogo em Análise e Desenvolvimento de Sistemas</b>, SENAC, 2023–2025 (concluído). <b>IA e programação:</b> Engenharia de Prompt: ChatGPT, Gemini e Meta AI (Udemy); Python Essentials 1 (Cisco). <b>Segurança:</b> Introdução ao Pentest na Prática (Desec Security); Introdução ao Hacking e Pentest 2.0 (Solyd Offensive Security); Introduction to Cybersecurity (Cisco). <b>Web:</b> HTML, CSS e lógica de programação com JavaScript (Alura, 5 cursos, 34 horas).</p>
-
-  <h2 class="page2">Projetos</h2>
-  <div class="proj">
-    <h3>Sistema corporativo de contratações e aprovações</h3><span class="kind">Desenvolvimento Full Stack</span>
-    <p>Aplicação que digitaliza a abertura e a aprovação de vagas, antes feitas em papel e por trocas entre áreas. Centraliza solicitações, regras e comunicação entre RH e gestores, com aprovação pela hierarquia, devolução e reenvio, notificações, histórico de ações e controle de acesso por perfil. <b>Resultado: processo fora do papel, mais agilidade e melhor comunicação entre RH e as áreas.</b> No QA, 1.646 de 1.649 verificações aprovadas.</p>
-    <p class="stack">PHP · Laravel · React · TypeScript · MySQL · PHPUnit</p>
-  </div>
-  <div class="proj">
-    <h3>Automação do DRP do ambiente do ERP</h3><span class="kind">Recuperação de desastres</span>
-    <p>Automação dos procedimentos técnicos do Plano de Recuperação de Desastres do ERP, antes manuais. <b>A execução caiu de cerca de 6 horas para 1h30, uma redução de 75%.</b> Processo em 8 etapas em PowerShell, com estado persistido, registros de execução, continuidade após cada reinicialização e interrupção controlada em caso de falha.</p>
-    <p class="stack">PowerShell · Python · Oracle · Windows Server</p>
-  </div>
-  <div class="proj">
-    <h3>Inventário e conformidade de dispositivos</h3><span class="kind">Integrações e segurança</span>
-    <p>Integrações e rotinas de coleta que mantêm atualizadas as informações do parque de equipamentos da empresa. Um coletor em PowerShell envia o inventário e o estado de cada máquina por API, com OAuth 2.0 e renovação de tokens. <b>Dá à equipe de Segurança da Informação visibilidade sobre antivírus e BitLocker e apoia a investigação de vulnerabilidades.</b></p>
-    <p class="stack">APIs REST · OAuth 2.0 · PowerShell · Laravel · MySQL</p>
-  </div>
-  <div class="proj">
-    <h3>DRP e automação de processos documentais</h3><span class="kind">Continuidade operacional</span>
-    <p>Solução de contingência para a plataforma de gestão de documentos da empresa: processa automaticamente os documentos que chegam por e-mail, com Python e Microsoft Graph em execução agendada, registro em banco, controle de duplicidade, tratamento de falhas, notificações e regras de retenção. <b>O modo de simulação analisou 7.715 mensagens sem alterar a caixa corporativa; 92 testes automatizados.</b></p>
-    <p class="stack">Python · Microsoft Graph · SQL Server · OAuth 2.0</p>
-  </div>
-  <div class="proj">
-    <h3>Relatórios e customizações corporativas</h3><span class="kind">Dados e customizações</span>
-    <p>Relatórios novos e personalizados em Crystal Reports sobre consultas em Oracle e SQL Server, views e procedures para consolidar dados (como uma view contábil com cerca de 294 mil lançamentos por ano) e interfaces auxiliares em HTA, para entregar a cada área a informação que o relatório padrão do ERP não traz. <b>Recuperei em produção a abertura de relatórios para usuários remotos.</b></p>
-    <p class="stack">Crystal Reports · Oracle · PL/SQL · SQL Server · HTA</p>
-  </div>
-
-  <h2>Como trabalho com IA</h2>
-  <div class="method">
-    <div><b><i>1</i>Requisito</b>Entendo o problema com quem vai usar a solução e escrevo o que ela precisa fazer, com critérios de aceite.</div>
-    <div><b><i>2</i>Contexto</b>Reúno o contexto técnico: banco, código existente, restrições de segurança e o que não pode mudar.</div>
-    <div><b><i>3</i>Agente</b>Divido o trabalho em etapas e uso agentes de programação, acompanhando cada mudança.</div>
-    <div><b><i>4</i>Validação</b>Reviso o código, executo os testes e respondo pela entrega.</div>
-  </div>
-
-  <h2>Outros projetos</h2>
-  <p><b>Plataforma de gestão para pequenos prestadores de serviço</b> (pessoal): base multiempresa com dados isolados por empresa, em Next.js, TypeScript e PostgreSQL. <b>Currículo online interativo</b>: construído com o mesmo método, em <a href="https://pedrocolbert.github.io/pedro-colbert-portfolio/">pedrocolbert.github.io/pedro-colbert-portfolio</a>.</p>
+  <div class="job"><div class="job-head"><h3>Assistente de Atendimento ao Usuário | Trisul S.A.</h3><span class="when">2025</span></div><p>Service Desk N2: resolução de incidentes, administração de identidades e acessos no Active Directory e Microsoft 365 e automações internas.</p></div>
+  <div class="job"><div class="job-head"><h3>Estagiário de TI – Infraestrutura e Redes | Trisul S.A.</h3><span class="when">2024 – 2025</span></div><p>Monitoramento de infraestrutura, suporte e desenvolvimento de scripts em Python e fluxos com Power Automate.</p></div>
+  <div class="job"><div class="job-head"><h3>Jovem Aprendiz em TI | Trisul S.A.</h3><span class="when">2023 – 2024</span></div><p>Suporte técnico, manutenção e inventário de equipamentos.</p></div>
+  <h2>Competências técnicas</h2>
+  <div class="skills"><p><b>Desenvolvimento:</b> PHP, Laravel, React, TypeScript, JavaScript, Next.js, MySQL, APIs REST, autenticação e regras de negócio.</p>
+    <p><b>Integração e automação:</b> Oracle, PL/SQL, SQL Server, Crystal Reports, Python, PowerShell, Microsoft Graph, Power Automate, OAuth 2.0.</p>
+    <p><b>Infraestrutura e Microsoft:</b> Microsoft 365, Azure, Active Directory, automações corporativas e apoio a processos de DRP.</p>
+    <p><b>IA, engenharia e qualidade:</b> Claude Code, Codex, ChatGPT, criação de skills, Git, testes com PHPUnit e Playwright, revisão de código.</p></div>
+  <h2>Formação e cursos selecionados</h2>
+  <p class="courses"><b>Tecnólogo em Análise e Desenvolvimento de Sistemas</b> — SENAC · 2023–2025 (concluído).<br />
+    <b>IA e programação:</b> Engenharia de Prompt (Udemy); Python Essentials 1 (Cisco). <b>Segurança:</b> cursos de pentest (Desec e Solyd); Introduction to Cybersecurity (Cisco). <b>Web:</b> HTML, CSS e lógica com JavaScript (Alura, 5 cursos, 34h).</p>
+  <footer><span>PEDRO COLBERT | CURRÍCULO PROFISSIONAL</span><span>01 / 02</span></footer>
+</section>
+<section class="page">
+  <div class="mark"></div>
+  <div class="page-rule"><h2 class="page-title" style="color:#202024;border:0;margin:0;padding:0">PROJETOS SELECIONADOS</h2><p class="page-sub">Soluções corporativas · Impacto operacional · Tecnologias aplicadas</p></div>
+  <div class="project"><div class="project-head"><h3>Sistema corporativo de contratações e aprovações</h3><span class="kind">Full Stack</span></div><p>Aplicação em Laravel e React com funcionalidades de solicitações de vagas, aprovações hierárquicas, devoluções, notificações e histórico. Utilizada e avaliada pelo RH, segue em desenvolvimento e homologação; ajudou a organizar o processo e a comunicação entre as áreas.</p><p class="stack">Tecnologias: PHP · Laravel · React · TypeScript · MySQL · PHPUnit</p></div>
+  <div class="project"><div class="project-head"><h3>Automação do DRP do ambiente ERP</h3><span class="kind">Recuperação de desastres</span></div><p>Automação em 8 etapas, com estado persistido, retomada após reinicialização, logs e tratamento de falhas. Tempos operacionais relatados de cerca de 6 horas no procedimento manual e 1h30 no automatizado; equivalência do escopo ainda em validação.</p><p class="stack">Tecnologias: PowerShell · Python · Oracle · Windows Server</p></div>
+  <div class="project"><div class="project-head"><h3>Inventário e conformidade de dispositivos</h3><span class="kind">Integrações e segurança</span></div><p>Coleta e envio automatizados do inventário e estado dos equipamentos por APIs autenticadas com OAuth 2.0. As informações sobre antivírus e BitLocker apoiam a equipe de Segurança da Informação no acompanhamento de conformidade e investigação de vulnerabilidades.</p><p class="stack">Tecnologias: APIs REST · OAuth 2.0 · PowerShell · Laravel · MySQL</p></div>
+  <div class="project"><div class="project-head"><h3>Automação de contingência documental</h3><span class="kind">Continuidade operacional</span></div><p>Rotina desenvolvida para processar e-mails e anexos via Microsoft Graph, com controle de duplicidade, notificações e retenção. O modo de simulação analisou mensagens sem alterar a caixa; a rotina conta com testes automatizados.</p><p class="stack">Tecnologias: Python · Microsoft Graph · SQL Server · OAuth 2.0</p></div>
+  <div class="project"><div class="project-head"><h3>Relatórios e customizações corporativas</h3><span class="kind">Dados e ERP</span></div><p>Criação e adaptação de relatórios em Crystal Reports, consultas Oracle/SQL Server, views e procedures para necessidades específicas das áreas. Inclui uma view contábil de lançamentos, interfaces HTA e recuperação da abertura de relatórios para usuários remotos.</p><p class="stack">Tecnologias: Crystal Reports · Oracle · PL/SQL · SQL Server · HTA</p></div>
+  <div class="method"><h2>Método de desenvolvimento com IA</h2><p><b>01 · Requisitos:</b> objetivo, restrições e critérios de aceite. <b>02 · Contexto:</b> código, dados e regras técnicas. <b>03 · Agentes:</b> implementação em etapas com supervisão. <b>04 · Validação:</b> revisão de código, testes e correções.</p></div>
+  <div class="other"><h2>Outros projetos</h2><p><b>Plataforma de gestão para prestadores de serviço</b> (pessoal): base multiempresa em Next.js, TypeScript e PostgreSQL. <b>Portfólio interativo:</b> desenvolvimento assistido por IA com Vite, TypeScript, GSAP e React Bits.</p></div>
+  <footer><span>PEDRO COLBERT | CURRÍCULO PROFISSIONAL</span><span>02 / 02</span></footer>
+</section>
 </body>
 </html>
