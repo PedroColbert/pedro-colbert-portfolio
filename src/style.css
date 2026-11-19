@@ -20,7 +20,7 @@
   --ink: #131313;
   --ink-2: #5d5850;
   --line: rgba(19, 19, 19, 0.16);
-  --accent: #e2401c;
+  --accent: #6d3fe0; /* teste: roxo só no modo claro (no escuro segue o laranja) */
   --on-accent: #fff;
   color-scheme: light;
 }
@@ -270,6 +270,8 @@ h1, h2, h3, p, dl, dd { margin: 0; }
 .term__body .dim, .term__in { color: #a9a49c; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .term__body .term__in { white-space: normal; padding-bottom: 6px; }
 .term__body .ok { color: #ff7a5c; }
+:root[data-theme='light'] .term__body b { color: #9b6bff; }
+:root[data-theme='light'] .term__body .ok { color: #b48cff; }
 .term__caret { display: inline-block; width: 8px; height: 1.05em; margin-left: 6px; vertical-align: -3px; background: currentColor; animation: blink 1.1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 

@@ -22,7 +22,7 @@ import Threads from './reactbits/Threads';
 // Cores de cada tema, iguais aos tokens do style.css
 const palette = {
   dark: { accent: '#ff5a36', dot: '#4b4844', bg: '#0d0d0e', ink: '#f3efe8', ink2: '#a9a49c' },
-  light: { accent: '#e2401c', dot: '#bfb7a8', bg: '#f3efe8', ink: '#131313', ink2: '#5d5850' },
+  light: { accent: '#6d3fe0', dot: '#bfb7a8', bg: '#f3efe8', ink: '#131313', ink2: '#5d5850' },
 } as const;
 type Theme = keyof typeof palette;
 const readTheme = (): Theme => (document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
@@ -100,7 +100,7 @@ function SectionCubes() {
 // Rastro de tinta que segue o cursor e estoura no clique, no site todo (atrás do conteúdo)
 function Splash() {
   const theme = useTheme();
-  return <SplashCursor colors={theme === 'light' ? ['#e2401c', '#ff7a5c', '#f0a070'] : ['#ff5a36', '#ff8a4a', '#b3261a']} rainbow={false} intensity={0.8} quality="medium" theme={theme} zIndex={-1} />;
+  return <SplashCursor colors={theme === 'light' ? ['#6d3fe0', '#9b6bff', '#b48cff'] : ['#ff5a36', '#ff8a4a', '#b3261a']} rainbow={false} intensity={0.8} quality="medium" theme={theme} zIndex={-1} />;
 }
 
 // Em telas de toque não há cursor: ficam as faíscas a cada toque
@@ -145,13 +145,13 @@ function TechLoop() {
 // ---------- Adesivo: brincadeira para arrastar, descolar e jogar ----------
 // Ele mora na página, não na janela: fica onde a pessoa soltar e rola junto com o conteúdo.
 // A arte é desenhada aqui mesmo, com a fonte do site, e entregue ao efeito como imagem.
-function drawSticker(): string {
+function drawSticker(fill: string): string {
   const S = 512, cv = document.createElement('canvas');
   cv.width = cv.height = S;
   const g = cv.getContext('2d')!;
   const display = "'Bricolage Grotesque Variable', 'Arial Black', sans-serif";
   g.fillStyle = '#f3efe8'; g.beginPath(); g.arc(S / 2, S / 2, 250, 0, Math.PI * 2); g.fill(); // borda do recorte
-  g.fillStyle = '#ff5a36'; g.beginPath(); g.arc(S / 2, S / 2, 226, 0, Math.PI * 2); g.fill();
+  g.fillStyle = fill; g.beginPath(); g.arc(S / 2, S / 2, 226, 0, Math.PI * 2); g.fill();
   g.fillStyle = '#0d0d0e'; g.textAlign = 'center'; g.textBaseline = 'middle';
   g.font = `800 228px ${display}`;
   if ('fontStretch' in g) (g as CanvasRenderingContext2D & { fontStretch: string }).fontStretch = 'condensed';
@@ -166,8 +166,10 @@ function drawSticker(): string {
   return cv.toDataURL('image/png');
 }
 function Sticker() {
+  const theme = useTheme();
   const [src, setSrc] = useState('');
-  useEffect(() => { document.fonts.ready.then(() => setSrc(drawSticker())); }, []);
+  // A cor acompanha o tema; o adesivo troca a imagem no lugar, sem voltar à posição inicial
+  useEffect(() => { document.fonts.ready.then(() => setSrc(drawSticker(theme === 'light' ? '#9b6bff' : '#ff5a36'))); }, [theme]);
   if (!src) return null;
   // Começa no hero, colado na beirada direita, sobre a bola de cristal (sem cobrir texto nem botão).
   // O efeito mede a posição a partir do centro da camada, que aqui é a página inteira.
@@ -179,7 +181,8 @@ function Sticker() {
 // ---------- Bastidores e contato ----------
 // Tela do terminal: letras que "decifram", como código sendo escrito
 function TermScreen() {
-  return <LetterGlitch glitchColors={['#ff5a36', '#ff7a5c', '#f3efe8']} baseColor="#a9a49c" backgroundColor="#0d0d0e" fontSize={13} speed={0.8} edgeFade={0.25} />;
+  const light = useTheme() === 'light';
+  return <LetterGlitch glitchColors={light ? ['#9b6bff', '#b48cff', '#f3efe8'] : ['#ff5a36', '#ff7a5c', '#f3efe8']} baseColor="#a9a49c" backgroundColor="#0d0d0e" fontSize={13} speed={0.8} edgeFade={0.25} />;
 }
 
 // Fios de luz atrás do "Vamos conversar?", que se abrem com o cursor
