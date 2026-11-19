@@ -214,6 +214,21 @@ h1, h2, h3, p, dl, dd { margin: 0; }
 .project__points li::before { content: ''; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: var(--accent); }
 .project .tags { margin-top: auto; padding-top: 8px; }
 
+/* Desktop: a seção fica presa na tela enquanto os cards correm para o lado. Ela ocupa exatamente
+   a altura da janela (o respiro antes dela vira margem, fora da parte presa) e os cards se ajustam
+   a essa altura. Sem isso, em notebooks de 14" e 15" (janela útil de 650 a 770 px) o fim dos
+   cards ficava abaixo da tela. Os textos encolhem um pouco em janelas baixas. */
+@media (min-width: 701px) {
+  .projects { margin-top: clamp(24px, 6vw, 96px); padding-top: clamp(72px, 11vh, 116px); height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+  .projects__head { margin-bottom: clamp(14px, 2.4vh, 32px); }
+  /* Até 640 px de card; em janela baixa a trilha encolhe, em janela alta o bloco fica centralizado */
+  .projects__track { flex: 0 1 calc(640px + clamp(16px, 3vh, 32px)); min-height: 0; padding-bottom: clamp(16px, 3vh, 32px); align-items: stretch; }
+  .project { width: min(78vw, 600px); min-height: 0; gap: clamp(10px, 1.7vh, 18px); padding: clamp(18px, 2.6vh, 34px) clamp(20px, 2.2vw, 34px); }
+  .project h3 { font-size: clamp(22px, min(2.6vw, 4.2vh), 38px); }
+  .project > p { font-size: clamp(14px, 2vh, 17px); line-height: 1.45; }
+  .project__points { gap: clamp(4px, 1vh, 10px); font-size: clamp(13px, 1.85vh, 15px); line-height: 1.45; }
+}
+
 /* 05 Método: cartões que grudam e empilham */
 .steps { display: grid; gap: 18px; padding-bottom: 6vh; }
 .step { position: sticky; top: calc(14vh + var(--i, 0) * 22px); display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 64px); align-items: start; padding: clamp(24px, 3.4vw, 52px); min-height: 38vh; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; transform-origin: 50% 0; will-change: transform; }

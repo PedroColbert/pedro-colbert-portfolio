@@ -2,31 +2,58 @@
 // Um AnalyserNode lê a energia dos graves (onde fica o bumbo) a cada quadro e a compara com a
 // média recente: o que passa da média vira um "pulso" de 0 a 1, com subida rápida e descida lenta.
 // Sem música tocando, o pulso fica em 0 e a esfera se comporta como sempre.
+//
+// Celular: o navegador (o iPhone principalmente) só libera o contexto de áudio se ele for criado
+// e retomado DENTRO do toque, de forma síncrona. Por isso o `prime()` é chamado direto nos
+// eventos de toque, clique e tecla, antes de qualquer espera; e a ligação com a música só é feita
+// quando o contexto já está ativo. Ligar com o contexto suspenso deixaria a música muda.
 let ctx: AudioContext | null = null;
 let analyser: AnalyserNode | null = null;
 let bins: Uint8Array<ArrayBuffer> | null = null;
+let element: HTMLAudioElement | null = null;
+let connected = false;
 let average = 0;
 let pulse = 0;
 let last = 0;
 
-// Liga o medidor ao elemento de áudio. Só funciona dentro de um gesto da pessoa (clique, toque
-// ou tecla), quando o navegador libera o som. Se o contexto de áudio não ficar ativo, desiste
-// sem tocar no elemento: a música segue tocando normalmente, só sem o pulso.
-export async function listenTo(audio: HTMLAudioElement) {
-  if (ctx) { if (ctx.state !== 'running') await ctx.resume().catch(() => {}); return; }
+function connect() {
+  if (connected || !ctx || !element || ctx.state !== 'running') return;
   try {
-    const context = new AudioContext();
-    if (context.state !== 'running') await context.resume().catch(() => {});
-    if (context.state !== 'running') { context.close(); return; }
-    const source = context.createMediaElementSource(audio);
-    const node = context.createAnalyser();
+    const source = ctx.createMediaElementSource(element);
+    const node = ctx.createAnalyser();
     node.fftSize = 1024;
     node.smoothingTimeConstant = 0.6;
     source.connect(node);
-    node.connect(context.destination);
-    ctx = context; analyser = node; bins = new Uint8Array(node.frequencyBinCount);
-  } catch { /* navegador sem Web Audio: segue sem pulso */ }
+    node.connect(ctx.destination);
+    analyser = node; bins = new Uint8Array(node.frequencyBinCount); connected = true;
+  } catch { /* navegador sem suporte: segue sem pulso, a música não é afetada */ }
 }
+
+// Chamar de forma síncrona dentro de um gesto da pessoa (toque, clique ou tecla).
+export function prime() {
+  try {
+    if (!ctx) {
+      const AC = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      if (!AC) return;
+      ctx = new AC();
+      ctx.addEventListener('statechange', connect);
+    }
+    if (ctx.state !== 'running') ctx.resume().then(connect, () => {});
+    else connect();
+  } catch { /* sem Web Audio: segue sem pulso */ }
+}
+
+// Informa qual elemento de áudio medir. Liga na hora se o contexto já estiver ativo;
+// senão, liga sozinho quando o próximo gesto ativar o contexto.
+export function listenTo(audio: HTMLAudioElement) {
+  element = audio;
+  prime(); // se o navegador já liberou som (música tocando sem toque), liga agora; senão, espera o gesto
+}
+
+// Ao voltar para a aba, o celular pode ter suspendido o áudio: tenta retomar.
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && ctx && ctx.state !== 'running') ctx.resume().catch(() => {});
+});
 
 // Pulso atual, de 0 a 1. Pode ser chamado a cada quadro.
 export function beat(): number {

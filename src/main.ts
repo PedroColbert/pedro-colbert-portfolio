@@ -8,7 +8,7 @@ import { SplitText } from 'gsap/SplitText';
 import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 import Lenis from 'lenis';
 import { heroCanvas } from './hero-canvas';
-import { listenTo } from './beat';
+import { listenTo, prime } from './beat';
 
 gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
 
@@ -148,6 +148,7 @@ fetch(MUSIC, { method: 'HEAD' }).then((r) => {
   $<HTMLElement>('.footer__music').hidden = false;
   paintSound();
   soundBtn.addEventListener('click', () => {
+    if (soundWanted) prime(); // libera o medidor da batida dentro do próprio clique
     // Armada mas ainda muda (o navegador barrou): o clique no botão é o gesto que faltava
     if (soundWanted && !soundPlaying) { startMusic(); return; }
     soundWanted = !soundWanted;
@@ -158,6 +159,7 @@ fetch(MUSIC, { method: 'HEAD' }).then((r) => {
   // 1) Tenta tocar já, ao abrir. 2) Se o navegador barrar, toca no primeiro gesto da visita.
   const gestures = ['pointerdown', 'pointerup', 'touchend', 'keydown', 'click'] as const;
   const onGesture = (e: Event) => {
+    if (soundWanted) prime(); // no celular o medidor da batida só é liberado dentro do toque
     if (soundPlaying || !soundWanted) return;
     if ((e.target as Element | null)?.closest?.('.sound')) return; // o próprio botão cuida do clique
     startMusic();
